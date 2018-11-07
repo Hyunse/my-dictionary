@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import MainPresenter from './MainPresenter';
@@ -15,10 +16,17 @@ class MainContainer extends Component<IProps> {
     const inputSearch = this.inputRef.current;
 
     if (inputSearch) {
-      // tslint:disable-next-line
-      console.log(inputSearch.value);
-
-      alert(inputSearch.value);
+      axios
+        .get(
+          'http://api.urbandictionary.com/v0/define?term=' + inputSearch.value
+        )
+        .then((res) => {
+          // tslint:disable-next-line
+          console.log(res.data);
+        })
+        .catch((error) => {
+          alert(error);
+        });
     }
   };
 
