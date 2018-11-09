@@ -8,7 +8,7 @@ class AppContainer extends React.Component {
     return (
       <React.Fragment>
         <ThemeProvider theme={theme}>
-            <AppPresenter />
+          <AppPresenter />
         </ThemeProvider>
       </React.Fragment>
     );

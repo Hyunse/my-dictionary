@@ -14,15 +14,14 @@ class MainContainer extends Component<IProps> {
   }
   public clickSearch = () => {
     const inputSearch = this.inputRef.current;
-
     if (inputSearch) {
       axios
         .get(
-          'http://api.urbandictionary.com/v0/define?term=' + inputSearch.value
+          `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${inputSearch}?key=${process.env.REACT_APP_DICTIONARY_KEY}`
         )
         .then((res) => {
           // tslint:disable-next-line
-          console.log(res.data);
+          console.log(res);
         })
         .catch((error) => {
           alert(error);

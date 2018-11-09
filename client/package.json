@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/dotenv": "^6.1.0",
     "axios": "^0.18.0",
+    "dotenv": "^6.1.0",
+    "env-cmd": "^8.0.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router": "^4.3.1",
@@ -13,7 +16,7 @@
     "styled-reset": "^1.6.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
+    "start": "env-cmd src/.env.development react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
