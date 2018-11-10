@@ -5,6 +5,7 @@ import MainPresenter from './MainPresenter';
 
 interface IProps {
   searchWords: any;
+  searchList: any;
 }
 
 class MainContainer extends Component<IProps, {}> {
@@ -25,10 +26,18 @@ class MainContainer extends Component<IProps, {}> {
 
   public render() {
     return (
-      <MainPresenter inputRef={this.inputRef} clickSearch={this.clickSearch} />
+      <MainPresenter
+        inputRef={this.inputRef}
+        clickSearch={this.clickSearch}
+        searchList={this.props.searchList !== '' ? this.props.searchList : []}
+      />
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return { searchList: state.searchList.data };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -39,6 +48,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(MainContainer);

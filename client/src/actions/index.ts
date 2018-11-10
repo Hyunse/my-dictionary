@@ -8,9 +8,11 @@ export const searchWords = (searchValue) => async (dispatch) => {
         process.env.REACT_APP_DICTIONARY_KEY
       }`
     );
+    // tslint:disable-next-line
+    console.log(response.data);
 
     dispatch({
-      payload: response,
+      payload: response.data,
       type: API_SUCCESS
     });
   } catch (err) {
