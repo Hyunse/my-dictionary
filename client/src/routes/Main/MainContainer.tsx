@@ -1,31 +1,25 @@
-import axios from 'axios';
 import React, { Component } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 import MainPresenter from './MainPresenter';
 
-interface IProps extends RouteComponentProps<any> {}
+interface IProps {
+  searchWords: any;
+}
 
-class MainContainer extends Component<IProps> {
+class MainContainer extends Component<IProps, {}> {
   private inputRef: React.RefObject<HTMLInputElement>;
 
   constructor(props) {
     super(props);
     this.inputRef = React.createRef();
+    this.clickSearch = this.clickSearch.bind(this);
   }
   public clickSearch = () => {
     const inputSearch = this.inputRef.current;
+
     if (inputSearch) {
-      axios
-        .get(
-          `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${inputSearch}?key=${process.env.REACT_APP_DICTIONARY_KEY}`
-        )
-        .then((res) => {
-          // tslint:disable-next-line
-          console.log(res);
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      this.props.searchWords(inputSearch.value);
     }
   };
 
@@ -36,4 +30,15 @@ class MainContainer extends Component<IProps> {
   }
 }
 
-export default MainContainer;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchWords: (props) => {
+      dispatch(actions.searchWords(props));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(MainContainer);
