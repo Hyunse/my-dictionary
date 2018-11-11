@@ -20,8 +20,6 @@ const Search = styled.div`
 
 const Input = styled.input``;
 
-// const Div = styled.div``;
-
 interface IProps {
   inputRef: React.RefObject<HTMLInputElement>;
   searchList: any;
