@@ -6,7 +6,7 @@ const Container = styled.button`
 
 
 interface IProps {
-  name: string;
+  name?: string;
   onClick: () => void;
 }
 
