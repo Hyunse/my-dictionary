@@ -27,21 +27,32 @@ const Header = styled.div`
   transition: left 0.3s ease-in-out;
 `;
 
+const BodyContainer = styled.div`
+  margin-top: 110px;
+  padding-top: 30px;
+  padding-right: 15px;
+  padding-left: 15px;
+`;
+
 interface IProps {
   searchList: any;
+  searchValue: string;
 }
 
-const MainPresenter: React.SFC<IProps> = ({ searchList }) => {
+const MainPresenter: React.SFC<IProps> = ({ searchList, searchValue }) => {
   return (
     <Container>
       <Header>
         <NavContainer />
       </Header>
-      {searchList === []
-        ? ''
-        : searchList.map((item) => {
-            return <div key={item.meta.id}>{item.meta.id}</div>;
-          })}
+      <BodyContainer>
+        Search Value : {searchValue}
+        {searchList === []
+          ? ''
+          : searchList.map((item) => {
+              return <div key={item.meta.id}>{item.meta.id}</div>;
+            })}
+      </BodyContainer>
     </Container>
   );
 };

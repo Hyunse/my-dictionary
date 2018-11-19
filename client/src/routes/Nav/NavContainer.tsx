@@ -48,7 +48,6 @@ class NavContainer extends Component<IProps, {}> {
   }
 }
 
-
 /**
  * mapDispatchToProps
  *

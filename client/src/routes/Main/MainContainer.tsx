@@ -6,6 +6,7 @@ interface IOwnProps {}
 
 interface IStateProps {
   searchList: any;
+  searchValue: string;
 }
 
 interface IDispatchProps {}
@@ -30,6 +31,7 @@ class MainContainer extends Component<IProps, {}> {
   public render() {
     return (
       <MainPresenter
+        searchValue= {this.props.searchValue}
         searchList={this.props.searchList !== '' ? this.props.searchList : []}
       />
     );
@@ -43,7 +45,10 @@ class MainContainer extends Component<IProps, {}> {
  * @return searchList.data
  */
 const mapStateToProps = (state) => {
-  return { searchList: state.searchList.data };
+  return {
+    searchList: state.searchList.data,
+    searchValue: state.searchValue
+  };
 };
 
 export default connect(mapStateToProps)(MainContainer);

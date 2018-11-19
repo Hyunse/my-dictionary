@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_ERROR, API_SUCCESS } from './types';
+import { API_ERROR, API_SUCCESS, SAVE_VALUE } from './types';
 
 /**
  * Search Word
@@ -13,10 +13,17 @@ export const searchWords = (searchValue: string) => async (dispatch) => {
         process.env.REACT_APP_DICTIONARY_KEY
       }`
     );
-    
+
+    // Dispatch : SearchList
     dispatch({
       payload: response.data,
       type: API_SUCCESS
+    });
+
+    // Dispatch : SearchValue
+    dispatch({
+      payload: searchValue,
+      type: SAVE_VALUE
     });
   } catch (err) {
     dispatch({
