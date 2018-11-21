@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import MainPresenter from './MainPresenter';
 
 interface IOwnProps {}
 
-interface IStateProps {
-  searchList: any;
-  searchValue: string;
-}
+interface IStateProps {}
 
 interface IDispatchProps {}
 
@@ -30,25 +26,10 @@ class MainContainer extends Component<IProps, {}> {
    */
   public render() {
     return (
-      <MainPresenter
-        searchValue= {this.props.searchValue}
-        searchList={this.props.searchList !== '' ? this.props.searchList : []}
-      />
+      <MainPresenter />
     );
   }
 }
 
-/**
- * mapStateToProps
- *
- * @param state : state from store
- * @return searchList.data
- */
-const mapStateToProps = (state) => {
-  return {
-    searchList: state.searchList.data,
-    searchValue: state.searchValue
-  };
-};
 
-export default connect(mapStateToProps)(MainContainer);
+export default MainContainer;

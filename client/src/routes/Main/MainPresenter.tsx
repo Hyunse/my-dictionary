@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '../../typed-components';
-import NavContainer from '../Nav';
+import Definition from '../Definition';
+import Nav from '../Nav';
 
 const Container = styled.div`
   display: flex;
@@ -27,32 +28,16 @@ const Header = styled.div`
   transition: left 0.3s ease-in-out;
 `;
 
-const BodyContainer = styled.div`
-  margin-top: 110px;
-  padding-top: 30px;
-  padding-right: 15px;
-  padding-left: 15px;
-`;
-
 interface IProps {
-  searchList: any;
-  searchValue: string;
 }
 
-const MainPresenter: React.SFC<IProps> = ({ searchList, searchValue }) => {
+const MainPresenter: React.SFC<IProps> = () => {
   return (
     <Container>
       <Header>
-        <NavContainer />
+        <Nav />
       </Header>
-      <BodyContainer>
-        Search Value : {searchValue}
-        {searchList === []
-          ? ''
-          : searchList.map((item) => {
-              return <div key={item.meta.id}>{item.meta.id}</div>;
-            })}
-      </BodyContainer>
+      <Definition />
     </Container>
   );
 };
