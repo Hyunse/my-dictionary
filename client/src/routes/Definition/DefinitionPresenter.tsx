@@ -63,7 +63,7 @@ const Vg = styled.div``;
 const VgHeader = styled.div`
   flex-wrap: wrap;
   margin-right: -15px;
-  margin-left: -15px;
+
   > h2 {
     color: #265667;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -75,6 +75,28 @@ const VgHeader = styled.div`
     letter-spacing: 0.3px;
     margin-bottom: 0.5em;
     padding-bottom: 0;
+  }
+`;
+
+const VgContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    color: #303336;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-stretch: normal;
+    font-weight: normal;
+    letter-spacing: 0.2px;
+    line-height: 22px;
+    margin-bottom: 25px;
+    
+    > span {
+      font-weight: bold;
+    }
   }
 `;
 
@@ -112,6 +134,16 @@ const renderSearchList = (searchList) => {
             <VgHeader>
               <h2>Definition of {item.meta.id}</h2>
             </VgHeader>
+            <VgContent>
+              {item.shortdef.map((def, i) => {
+                return (
+                  <div key={i}>
+                    <span>{i + 1}.</span>
+                    <div>{def}</div>
+                  </div>
+                );
+              })}
+            </VgContent>
           </Vg>
         </DefinitionWrapper>
       );
