@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 import NavPresenter from './NavPresenter';
 
-interface IOwnProps {}
+interface IOwnProps {
+}
 
 interface IStateProps {}
 
@@ -11,9 +14,9 @@ interface IDispatchProps {
   searchWords: (value: string) => void;
 }
 
-type IProps = IStateProps & IDispatchProps & IOwnProps;
+type IProps = IStateProps & IDispatchProps & IOwnProps & RouteComponentProps;
 
-class NavContainer extends Component<IProps, {}> {
+class NavContainer extends Component<IProps> {
   private inputRef: React.RefObject<HTMLInputElement>;
 
   /**
@@ -35,15 +38,15 @@ class NavContainer extends Component<IProps, {}> {
     if (inputSearch) {
       // Create Action searchWords
       this.props.searchWords(inputSearch.value);
+      if(this.props.history) {
+        this.props.history.push(`/dictionary/${inputSearch.value}`);
+      }
     }
   };
 
   public render() {
     return (
-      <NavPresenter
-        inputRef={this.inputRef}
-        clickSearch={this.clickSearch}
-      />
+      <NavPresenter inputRef={this.inputRef} clickSearch={this.clickSearch} />
     );
   }
 }
@@ -61,7 +64,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(NavContainer);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(NavContainer)
+);

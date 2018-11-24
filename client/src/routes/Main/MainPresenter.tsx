@@ -40,8 +40,8 @@ const MainPresenter: React.SFC<IProps> = () => {
         <Nav />
       </Header>
       <Switch>
-        <Route path={"/"} component={Home} />
-        <Route path={"/dictionary"} component={Definition} />
+        <Route exact={true} path={"/"} component={Home} />
+        <Route path={"/dictionary/:searchValue"} component={Definition} />
       </Switch>
       <Definition />
     </Container>
