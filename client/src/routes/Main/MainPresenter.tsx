@@ -1,6 +1,8 @@
 import React from 'react';
+import { Route, Switch  } from 'react-router-dom';
 import styled from '../../typed-components';
 import Definition from '../Definition';
+import Home from '../Home';
 import Nav from '../Nav';
 
 const Container = styled.div`
@@ -37,6 +39,10 @@ const MainPresenter: React.SFC<IProps> = () => {
       <Header>
         <Nav />
       </Header>
+      <Switch>
+        <Route path={"/"} component={Home} />
+        <Route path={"/dictionary"} component={Definition} />
+      </Switch>
       <Definition />
     </Container>
   );
