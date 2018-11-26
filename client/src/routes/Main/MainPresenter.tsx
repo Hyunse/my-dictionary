@@ -43,7 +43,6 @@ const MainPresenter: React.SFC<IProps> = () => {
         <Route exact={true} path={"/"} component={Home} />
         <Route path={"/dictionary/:searchValue"} component={Definition} />
       </Switch>
-      <Definition />
     </Container>
   );
 };

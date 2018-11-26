@@ -17,7 +17,7 @@ class DefinitionContainer extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
   }
-  
+
   public render() {
     return (
       <DefinitionPresenter
@@ -42,4 +42,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps)(DefinitionContainer);
+export default connect(mapStateToProps, null)(DefinitionContainer);
