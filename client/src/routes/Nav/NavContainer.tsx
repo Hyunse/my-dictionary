@@ -30,6 +30,16 @@ class NavContainer extends Component<IProps> {
   }
 
   /**
+   * Key Press
+   */
+  public handleKeyPress = (e) => {
+    // Enter
+    if(e.charCode === 13) {
+      this.clickSearch();
+    }
+  }
+
+  /**
    * Click Search Button
    */
   public clickSearch = () => {
@@ -46,7 +56,7 @@ class NavContainer extends Component<IProps> {
 
   public render() {
     return (
-      <NavPresenter inputRef={this.inputRef} clickSearch={this.clickSearch} />
+      <NavPresenter inputRef={this.inputRef} clickSearch={this.clickSearch} handleKeyPress={this.handleKeyPress}/>
     );
   }
 }

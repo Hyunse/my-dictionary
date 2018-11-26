@@ -35,8 +35,6 @@ class DefinitionContainer extends Component<IProps> {
  * @return searchList.data
  */
 const mapStateToProps = (state) => {
-  // tslint:disable-next-line
-  console.log(state);
   return {
     searchList: state.searchList.data,
     searchValue: state.searchValue
