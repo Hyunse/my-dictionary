@@ -1,0 +1,11 @@
+# dependencies
+/node_modules
+
+# production
+/build
+
+# env
+.env
+.env.development
+
+# config1
