@@ -8,7 +8,8 @@
         "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
         "args": [ "${workspaceRoot}/src/index.ts" ],
         "cwd": "${workspaceRoot}",
-        "protocol": "inspector"
+        "protocol": "inspector",
+        "envFile": "${workspaceFolder}/src/.env"
       }
     ]
   }

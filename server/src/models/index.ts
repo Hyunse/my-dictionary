@@ -8,7 +8,8 @@ const sequelize = new Sequelize(
   DBConfig.dev.password || '',
   {
     dialect: 'postgres',
-    timezone: 'utc'
+    timezone: 'utc',
+    operatorsAliases: false
   }
 );
 

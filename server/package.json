@@ -1,5 +1,5 @@
 {
-  "name": "express-ts-boilerplate",
+  "name": "my-dictionary-server",
   "version": "1.0.0",
   "description": "Expres Typescript Server",
   "main": "index.js",

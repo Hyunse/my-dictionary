@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -16,6 +17,8 @@ class App {
 
   // Middlewares
   private middlewares = (): void => {
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(cors());
     this.app.use(logger('dev'));
     this.app.use(helmet());
