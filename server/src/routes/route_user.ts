@@ -6,6 +6,6 @@ const router: Router = Router();
 
 router.get('/users', asyncHandler(userController.findAllUsers));
 
-router.post('/user/login', asyncHandler(userController.findUserById));
+router.post('/user/signIn', asyncHandler(userController.signInUser));
 
 export default router;

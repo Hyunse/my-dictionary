@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import DBConfig from '../config/config_db';
 
-// Init 
+// Init Sequelize
 const sequelize = new Sequelize(
   DBConfig.dev.database || '',
   DBConfig.dev.user || '',
@@ -14,8 +14,9 @@ const sequelize = new Sequelize(
 );
 
 // Add Models
+// When you add new Models, put model path here!
 const models = {
-  user: sequelize.import('./users'),
+  user: sequelize.import('./Users'),
   sequelize,
   Sequelize
 };

@@ -3,21 +3,34 @@ import asyncHandler from '../middlewares/asyncHandler';
 import Models from '../models';
 
 class UserController {
-  constructor() {
-  }
+  constructor() {}
 
   public findAllUsers = asyncHandler(async (_: Request, res: Response) => {
     const users = await Models.user.findAll();
     res.send(users);
   });
 
-  public findUserById = asyncHandler(async (req: Request, res: Response) => {
+  /**
+   * Sign In
+   */
+  public signInUser = asyncHandler(async (req: Request, res: Response) => {
+    // Param
     const email = req.body.email;
-    const password = req.body.password;
-    console.log(password);
-    res.send(email);
+    // const password = req.body.password;
+
+    const user = await Models.user.findOne({ where: { email: email } });
+
+    res.send(user);
+  });
+
+  /**
+   * Sign Up
+   */
+  public signUpUser = asyncHandler(async (req: Request, res: Response) => {
+    // Param
 
   });
+  
 }
 
 export default new UserController();
