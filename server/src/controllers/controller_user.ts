@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import asyncHandler from '../middlewares/asyncHandler';
+import bcryptPassword from '../middlewares/bcryptPassword';
 import Models from '../models';
 
 class UserController {
@@ -28,7 +29,13 @@ class UserController {
    */
   public signUpUser = asyncHandler(async (req: Request, res: Response) => {
     // Param
+    let user = req.body;
+    // bcrypt password
+    user.password = await bcryptPassword(user.password);
 
+    const newUser = await Models.user.create({ ...user });
+
+    res.send(newUser);
   });
   
 }
