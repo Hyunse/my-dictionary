@@ -1,3 +1,13 @@
+export interface User {
+  id: number,
+  name: string,
+  password: string,
+  country: string,
+  email: string,
+  createdAt: Date,
+  updatedAt: Date
+}
+
 export default (sequelize, DataTypes) => {
   const Users = sequelize.define(
     'users',
