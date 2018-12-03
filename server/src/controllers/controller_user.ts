@@ -3,14 +3,16 @@ import asyncHandler from '../middlewares/asyncHandler';
 import PasswordUtil from '../utils/util_password';
 import Models from '../models';
 import { User } from '../models/Users';
-// import CommonUtil from '../utils/util_common';
 
 class UserController {
   constructor() {}
 
   public findAllUsers = asyncHandler(async (_: Request, res: Response) => {
     const users = await Models.user.findAll();
-    res.send(users);
+    res.send({
+      ok: true,
+      data: users
+    });
   });
 
   /**
@@ -28,23 +30,29 @@ class UserController {
         return res;
       });
 
-    if (user) {
-      const isSame = await PasswordUtil.comparePassword(
-        password,
-        user.password
-      );
+    if (!user) {
+      throw {
+        status: 401,
+        message: 'Email Not Found',
+        token: null
+      };
+    }
 
-      if (isSame) {
-        res.send(user);
-      } else {
-        res.status(401).send({
-          errMsg: `UserName or Password is incorrect.`
-        });
-      }
-    } else {
-      res.status(401).send({
-        errMsg: `UserName or Password is incorrect.`
+    const isSame = await PasswordUtil.comparePassword(password, user.password);
+
+    if (isSame) {
+      res.send({
+        ok: true,
+        message: null,
+        token: user
       });
+    } else {
+      throw {
+        ok: false,
+        status: 401,
+        message: `Password is incorrect.`,
+        token: null
+      };
     }
   });
 

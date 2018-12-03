@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import logger from 'morgan';
 import homeRoute from './routes/route_home';
 import userRoute from './routes/route_user';
+import { errorHandler } from './middlewares/errorHandler';
+import { logHandler } from './middlewares/logHandler';
 
 class App {
   public app;
@@ -13,6 +15,7 @@ class App {
     this.app = express();
     this.middlewares();
     this.mountRoutes();
+    this.logging();
   }
 
   // Middlewares
@@ -23,6 +26,11 @@ class App {
     this.app.use(logger('dev'));
     this.app.use(helmet());
   };
+
+  private logging = (): void => {
+    this.app.use(logHandler);
+    this.app.use(errorHandler);
+  }
 
   // Mount Routes
   private mountRoutes(): void {
