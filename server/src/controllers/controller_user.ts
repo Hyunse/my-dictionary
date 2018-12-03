@@ -3,7 +3,7 @@ import asyncHandler from '../middlewares/asyncHandler';
 import PasswordUtil from '../utils/util_password';
 import Models from '../models';
 import { User } from '../models/Users';
-import CommonUtil from '../utils/util_common';
+// import CommonUtil from '../utils/util_common';
 
 class UserController {
   constructor() {}
@@ -20,15 +20,32 @@ class UserController {
     // Param
     const email = req.body.email;
     const password = req.body.password;
-    // <TCustomAttributes>(options?: FindOptions<TAttributes & TCustomAttributes>): Promise<TInstance | null>;
+
     // Find User By Email
-    const user: any = await Models.user.findOne({ where: { email: email } });
+    const user: User = await Models.user
+      .findOne({ where: { email: email } })
+      .then((res: User) => {
+        return res;
+      });
 
-    if(user) {
-      PasswordUtil.comparePassword(user.password, password);  
+    if (user) {
+      const isSame = await PasswordUtil.comparePassword(
+        password,
+        user.password
+      );
+
+      if (isSame) {
+        res.send(user);
+      } else {
+        res.status(401).send({
+          errMsg: `UserName or Password is incorrect.`
+        });
+      }
+    } else {
+      res.status(401).send({
+        errMsg: `UserName or Password is incorrect.`
+      });
     }
-
-    res.send(user);
   });
 
   /**
@@ -37,8 +54,8 @@ class UserController {
   public signUpUser = asyncHandler(async (req: Request, res: Response) => {
     // Param
     let user = req.body;
-    
-    // TODO: Check Duplicated Email 
+
+    // TODO: Check Duplicated Email
 
     // bcrypt password
     user.password = await PasswordUtil.savePassword(user.password);
@@ -47,7 +64,6 @@ class UserController {
 
     res.send(newUser);
   });
-  
 }
 
 export default new UserController();

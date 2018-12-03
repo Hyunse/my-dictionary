@@ -1,11 +1,11 @@
 export interface User {
-  id: number,
-  name: string,
-  password: string,
-  country: string,
-  email: string,
-  createdAt: Date,
-  updatedAt: Date
+  id: number;
+  name: string;
+  password: string;
+  country: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export default (sequelize, DataTypes) => {
