@@ -12,9 +12,9 @@ const jwtHandler = async (
     const user = await JWTUtil.decodeJWT(token);
 
     if (user) {
-      // req.user = user;
+      req.body.user = user;
     } else {
-      // req.user = undefined;
+      req.body.user = undefined;
     }
   }
 

@@ -3,6 +3,7 @@ import asyncHandler from '../middlewares/asyncHandler';
 import PasswordUtil from '../utils/util_password';
 import Models from '../models';
 import { User } from '../models/Users';
+import JwtUtil from '../utils/util_jwt';
 
 class UserController {
   constructor() {}
@@ -41,10 +42,13 @@ class UserController {
     const isSame = await PasswordUtil.comparePassword(password, user.password);
 
     if (isSame) {
+      // Create JWT
+      const token = JwtUtil.createJWT(user.id);
+
       res.send({
         ok: true,
         message: null,
-        token: user
+        token
       });
     } else {
       throw {

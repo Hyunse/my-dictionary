@@ -29,11 +29,11 @@ class JwtUtil {
       const decoded: any = jwt.verify(token, `${process.env.JWT_TOKEN}`);
       const { id } = decoded;
       const user: User = await Models.user
-        .findOne({ where: id })
+        .findOne({ where: { id: id } })
         .then((res: User) => {
           return res;
         });
-        
+
       return user;
     } catch (error) {
       return undefined;

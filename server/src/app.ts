@@ -7,6 +7,8 @@ import homeRoute from './routes/route_home';
 import userRoute from './routes/route_user';
 import { errorHandler } from './middlewares/errorHandler';
 import { logHandler } from './middlewares/logHandler';
+import jwtHandler from './middlewares/jwtHandler';
+
 
 class App {
   public app;
@@ -25,6 +27,7 @@ class App {
     this.app.use(cors());
     this.app.use(logger('dev'));
     this.app.use(helmet());
+    this.app.use(jwtHandler);
   };
 
   private logging = (): void => {
