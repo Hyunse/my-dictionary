@@ -15,4 +15,4 @@ class CommonUtil {
   }
 }
 
-export default new CommonUtil;
+export default new CommonUtil();
