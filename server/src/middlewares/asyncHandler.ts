@@ -1,14 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 
-/**
- * Async Await Handler
- * @param fn : function
- */
 interface IParam {
   req?: Request;
   res?: Response;
   next?: NextFunction;
 }
+
+/**
+ * Async Await Handler
+ * 
+ * @param {Function} fn
+ * @desc Try catch Error aysnc function
+ */
 const asyncHandler = (fn) => (
   req: Request,
   res: Response,

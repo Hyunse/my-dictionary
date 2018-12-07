@@ -67,7 +67,6 @@ class UserController {
     // Param
     let user = req.body;
 
-    // TODO: Check Duplicated Email
     const duplicatedUser = await Models.user.findOne({ where: {
       email: user.email
     }});
@@ -82,7 +81,7 @@ class UserController {
     }
 
     // bcrypt password
-    user.password = await PasswordUtil.savePassword(user.password);
+    user.password = await PasswordUtil.encryptPassword(user.password);
 
     // Add User
     const newUser = await Models.user.create({ ...user });
@@ -90,6 +89,9 @@ class UserController {
     res.send(newUser);
   });
 
+  /**
+   * Update User Info
+   */
   public update = asyncHandler(async (req: Request, res: Response) => {
     // Param
     const name = req.body.name;

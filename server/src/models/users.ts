@@ -8,6 +8,9 @@ export interface User {
   updatedAt: Date;
 }
 
+/**
+ * User Table Info
+ */
 export default (sequelize, DataTypes) => {
   const Users = sequelize.define(
     'users',

@@ -5,6 +5,7 @@ import { User } from '../models/Users';
 class JwtUtil {
   /**
    * Create Json Web Token
+   * 
    * @param {number} id
    * @return {Object} token
    */
@@ -21,6 +22,7 @@ class JwtUtil {
 
   /**
    * Decode JWT
+   * 
    * @param {string} token
    * @return {User} user
    */
