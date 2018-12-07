@@ -17,6 +17,7 @@ const sequelize = new Sequelize(
 // When you add new Models, put model path here!
 const models = {
   user: sequelize.import('./Users'),
+  vocabulary: sequelize.import('./Vocabulary'),
   sequelize,
   Sequelize
 };
