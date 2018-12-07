@@ -19,7 +19,7 @@ class UserController {
   /**
    * Sign In
    */
-  public signInUser = asyncHandler(async (req: Request, res: Response) => {
+  public signIn = asyncHandler(async (req: Request, res: Response) => {
     // Param
     const email = req.body.email;
     const password = req.body.password;
@@ -63,18 +63,52 @@ class UserController {
   /**
    * Sign Up
    */
-  public signUpUser = asyncHandler(async (req: Request, res: Response) => {
+  public signUp = asyncHandler(async (req: Request, res: Response) => {
     // Param
     let user = req.body;
 
     // TODO: Check Duplicated Email
+    const duplicatedUser = await Models.user.findOne({ where: {
+      email: user.email
+    }});
+
+    if(duplicatedUser) {
+      throw {
+        ok: false,
+        status: 409,
+        message: `Email already exist.`,
+        token: null
+      }
+    }
 
     // bcrypt password
     user.password = await PasswordUtil.savePassword(user.password);
 
+    // Add User
     const newUser = await Models.user.create({ ...user });
 
     res.send(newUser);
+  });
+
+  public update = asyncHandler(async (req: Request, res: Response) => {
+    // Param
+    const name = req.body.name;
+    const email = req.body.email;
+    const country = req.body.country;
+    const password = req.body.password;
+    // Jwt
+    const user = req.body.user;
+
+    const result = await Models.user.update(
+      { name, email, country, password },
+      {
+        where: {
+          id: user.id
+        }
+      }
+    );
+
+    res.send(result);
   });
 }
 
