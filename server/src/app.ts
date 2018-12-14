@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import logger from 'morgan';
 import homeRoute from './routes/route_home';
 import userRoute from './routes/route_user';
+import vocabularyRoute from './routes/route_vocabulary';
 import { errorHandler } from './middlewares/errorHandler';
 import { logHandler } from './middlewares/logHandler';
 import jwtHandler from './middlewares/jwtHandler';
@@ -39,6 +40,7 @@ class App {
   private mountRoutes(): void {
     this.app.use(homeRoute);
     this.app.use(userRoute);
+    this.app.use(vocabularyRoute);
   }
 }
 

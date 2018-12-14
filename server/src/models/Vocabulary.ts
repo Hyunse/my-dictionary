@@ -13,17 +13,20 @@ export interface Vocabulary {
  */
 export default (sequelize, DataTypes) => {
   const Vocabulary = sequelize.define(
-    'Vocabulary',
+    'vocabulary',
     {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      userId: DataTypes.INTEGER,
-      word: DataTypes.STRING,
-      format: DataTypes.STRING,
-      definition: DataTypes.STRING,
+      userId: {
+        type: DataTypes.INTEGER,
+        field: 'user_id'
+      },
+      word: DataTypes.STRING(255),
+      format: DataTypes.STRING(50),
+      definition: DataTypes.STRING(1000),
       createdAt: {
         type: 'TIMESTAMP',
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
@@ -38,7 +41,8 @@ export default (sequelize, DataTypes) => {
       }
     },
     {
-      timestamp: true
+      timestamp: true,
+      freezeTableName: true
     }
   );
 
