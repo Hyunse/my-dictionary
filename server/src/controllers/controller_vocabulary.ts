@@ -10,6 +10,7 @@ class VocabularyController {
   public findAllVocabulary = asyncHandler(
     async (req: Request, res: Response) => {
       const { id } = req.body.user;
+
       const vocabularies = await Models.vocabulary.findAll({
         where: {
           userId: id
@@ -28,7 +29,7 @@ class VocabularyController {
     const word = req.body.word;
     const format = req.body.format;
     const definition = req.body.definition;
-    let user = req.body.user;
+    const user = req.body.user;
 
     const duplicatedVocabulary = await Models.vocabulary.findOne({
       where: {
@@ -41,7 +42,7 @@ class VocabularyController {
       throw {
         ok: false,
         status: 409,
-        message: `Word already exist.`,
+        message: `The word already exist.`,
         token: null
       };
     }
@@ -55,6 +56,31 @@ class VocabularyController {
     });
 
     res.send(newVocabulary);
+  });
+
+  public delete = asyncHandler(async (req: Request, res: Response) => {
+    const wordId = req.body.id;
+    const user = req.body.user;
+
+    const result = await Models.vocabulary.destroy({
+      where: {
+        id: wordId,
+        userId: user.id
+      }
+    });
+
+    if(result < 1) {
+      throw {
+        ok: false,
+        status: 404,
+        message: `The word couldn't be found.`
+      }
+    }
+
+    res.send({
+      ok: true,
+      message: `success to delete`
+    });
   });
 }
 
