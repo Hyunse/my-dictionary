@@ -1,6 +1,12 @@
 import axios from 'axios';
-import { API_ERROR, API_SUCCESS, SAVE_VALUE } from './types';
-
+import server from '../config/server';
+import {
+  API_ERROR,
+  API_SUCCESS,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
+  SAVE_VALUE
+} from './types';
 /**
  * Search Word
  * @param {string} searchValue
@@ -29,6 +35,31 @@ export const searchWords = (searchValue: string) => async (dispatch) => {
     dispatch({
       payload: 'API Call Error',
       type: API_ERROR
+    });
+  }
+};
+
+export const sginIn = (userId: string, password: string) => async (
+  dispatch
+) => {
+  try {
+    const response = await axios.post(
+      `${server.dev.url}:${server.dev.port}/user/signIn`,
+      {
+        password,
+        userId
+      }
+    );
+
+    // Dispatch : SearchList
+    dispatch({
+      payload: response.data,
+      type: LOGIN_SUCCESS
+    });
+  } catch (err) {
+    dispatch({
+      payload: 'Login Fail',
+      type: LOGIN_FAIL
     });
   }
 };
