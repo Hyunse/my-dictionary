@@ -45,8 +45,8 @@ const LoginPresenter: React.SFC<IProps> = ({
   return (
     <Container>
       <Form>
-        <Input type="text" placeholder="username" ref={userIdInputRef} />
-        <Input type="password" placeholder="password" ref={passwordInputRef} />
+        <Input type="text" placeholder="username" inputRef={userIdInputRef} />
+        <Input type="password" placeholder="password" inputRef={passwordInputRef} />
         <Button onClick={clickLogin} name="LOGIN" />
         <Message>
           Not registered? <SignUp href="#">Create an account</SignUp>

@@ -59,8 +59,8 @@ class LoginContainer extends Component<IProps, {}> {
  */
 const mapDispatchToProps = (dispatch) => {
   return {
-    sginIn: (userId, password) => {
-      dispatch(actions.sginIn(userId, password));
+    signIn: (userId, password) => {
+      dispatch(actions.signIn(userId, password));
     }
   };
 };

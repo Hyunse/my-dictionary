@@ -16,11 +16,11 @@ const InputBox = styled.input`
 interface IProps {
   type: string;
   placeholder?: string;
-  ref: React.RefObject<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
-const Input: React.SFC<IProps> = ({ type, placeholder, ref }) => (
-  <InputBox type={type} placeholder={placeholder} ref={ref} />
+const Input: React.SFC<IProps> = ({ type, placeholder, inputRef }) => (
+  <InputBox type={type} placeholder={placeholder} ref={inputRef} />
 );
 
 export default Input;

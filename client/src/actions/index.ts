@@ -7,6 +7,12 @@ import {
   LOGIN_SUCCESS,
   SAVE_VALUE
 } from './types';
+
+const config = {
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+};
 /**
  * Search Word
  * @param {string} searchValue
@@ -39,18 +45,20 @@ export const searchWords = (searchValue: string) => async (dispatch) => {
   }
 };
 
-export const sginIn = (userId: string, password: string) => async (
-  dispatch
-) => {
+export const signIn = (email: string, password: string) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `${server.dev.url}:${server.dev.port}/user/signIn`,
+      `http://${server.dev.url}:${server.dev.port}/user/signIn`,
       {
-        password,
-        userId
-      }
+        email,
+        password
+      },
+      config
     );
 
+    // tslint:disable-next-line
+    console.log(response);
+    localStorage.setItem('jwt', response.data.token);
     // Dispatch : SearchList
     dispatch({
       payload: response.data,
