@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch  } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import styled from '../../typed-components';
 import Definition from '../Definition';
 import Home from '../Home';
@@ -30,8 +30,7 @@ const Header = styled.div`
   transition: left 0.3s ease-in-out;
 `;
 
-interface IProps {
-}
+interface IProps {}
 
 const MainPresenter: React.SFC<IProps> = () => {
   return (
@@ -39,10 +38,8 @@ const MainPresenter: React.SFC<IProps> = () => {
       <Header>
         <Nav />
       </Header>
-      <Switch>
-        <Route exact={true} path={"/"} component={Home} />
-        <Route path={"/dictionary/:searchValue"} component={Definition} />
-      </Switch>
+      <Route exact={true} path={'/'} component={Home} />
+      <Route path={'/dictionary/:searchValue'} component={Definition} />
     </Container>
   );
 };
