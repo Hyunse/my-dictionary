@@ -8,11 +8,6 @@ import {
   SAVE_VALUE
 } from './types';
 
-const config = {
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  }
-};
 /**
  * Search Word
  * @param {string} searchValue
@@ -52,18 +47,18 @@ export const signIn = (email: string, password: string) => async (dispatch) => {
       {
         email,
         password
-      },
-      config
+      }
     );
 
-    // tslint:disable-next-line
-    console.log(response);
-    localStorage.setItem('jwt', response.data.token);
     // Dispatch : SearchList
     dispatch({
       payload: response.data,
       type: LOGIN_SUCCESS
     });
+    
+    // Set JWT
+    localStorage.setItem('jwt', response.data.token);
+
   } catch (err) {
     dispatch({
       payload: 'Login Fail',

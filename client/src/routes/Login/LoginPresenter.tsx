@@ -9,7 +9,7 @@ const Container = styled.div`
   margin: auto;
 `;
 
-const Form = styled.form`
+const Form = styled.div`
   position: relative;
   z-index: 1;
   background: #ffffff;
@@ -46,7 +46,11 @@ const LoginPresenter: React.SFC<IProps> = ({
     <Container>
       <Form>
         <Input type="text" placeholder="username" inputRef={userIdInputRef} />
-        <Input type="password" placeholder="password" inputRef={passwordInputRef} />
+        <Input
+          type="password"
+          placeholder="password"
+          inputRef={passwordInputRef}
+        />
         <Button onClick={clickLogin} name="LOGIN" />
         <Message>
           Not registered? <SignUp href="#">Create an account</SignUp>
