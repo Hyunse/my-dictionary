@@ -13,23 +13,23 @@ interface IDispatchProps {}
 
 type IProps = IStateProps & IDispatchProps & IOwnProps & RouteComponentProps;
 
-const requireAuthHOC = (ChildComponent) => {
+const requireAuth = (ChildComponent) => {
   class ComposedComponent extends Component<IProps> {
-    componentDidMount() {
+    public componentDidMount() {
       this.shouldNavigateAway();
     }
 
-    componentDidUpdate() {
+    public componentDidUpdate() {
       this.shouldNavigateAway();
     }
 
-    shouldNavigateAway() {
+    public shouldNavigateAway() {
       if (!this.props.auth && this.props.history) {
-        this.props.history.push('/');
+        this.props.history.push('/login');
       }
     }
 
-    render() {
+    public render() {
       return <ChildComponent {...this.props} />;
     }
   }
@@ -43,4 +43,4 @@ const requireAuthHOC = (ChildComponent) => {
   return withRouter(connect(mapStateToProps)(ComposedComponent));
 };
 
-export default requireAuthHOC;
+export default requireAuth;

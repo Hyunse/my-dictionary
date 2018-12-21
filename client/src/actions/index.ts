@@ -50,14 +50,13 @@ export const signIn = (email: string, password: string) => async (dispatch) => {
       }
     );
 
-    // Dispatch : SearchList
     dispatch({
-      payload: response.data,
+      payload: response.data.token,
       type: LOGIN_SUCCESS
     });
     
     // Set JWT
-    localStorage.setItem('jwt', response.data.token);
+    localStorage.setItem('token', response.data.token);
 
   } catch (err) {
     dispatch({

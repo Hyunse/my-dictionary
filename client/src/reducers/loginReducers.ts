@@ -1,18 +1,19 @@
 import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from '../actions/types';
 
 const INITIAL_STATE = {
-  logined: ''
+  authenticated: '',
+  errorMessage: ''
 };
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOGIN_FAIL:
-      return { ...state, auth: action.ok };
+      return { ...state, errorMessage: action.payload };
     case LOGIN_SUCCESS:
-      return { ...state, auth: action.ok };
+      return { ...state, authenticated: action.payload };
     case LOGOUT:
-      return { ...state, auth: action.ok };
+      return { ...state, authenticated: '' };
     default:
-      return { ...state, auth: action.ok };
+      return { ...state, errorMessage: action.payload };
   }
 }
