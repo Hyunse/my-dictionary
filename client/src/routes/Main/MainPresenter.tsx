@@ -5,6 +5,20 @@ import Definition from '../Definition';
 import Home from '../Home';
 import Nav from '../Nav';
 
+interface IProps {}
+
+const MainPresenter: React.SFC<IProps> = () => {
+  return (
+    <Container>
+      <Header>
+        <Nav />
+      </Header>
+      <Route exact={true} path={'/'} component={Home} />
+      <Route path={'/dictionary/:searchValue'} component={Definition} />
+    </Container>
+  );
+};
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,19 +43,5 @@ const Header = styled.div`
   -webkit-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
 `;
-
-interface IProps {}
-
-const MainPresenter: React.SFC<IProps> = () => {
-  return (
-    <Container>
-      <Header>
-        <Nav />
-      </Header>
-      <Route exact={true} path={'/'} component={Home} />
-      <Route path={'/dictionary/:searchValue'} component={Definition} />
-    </Container>
-  );
-};
 
 export default MainPresenter;

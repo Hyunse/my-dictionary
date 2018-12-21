@@ -1,6 +1,59 @@
 import React from 'react';
 import styled from '../../typed-components';
 
+interface IProps {
+  searchList: any;
+  searchValue: string;
+}
+const DefinitionPresenter: React.SFC<IProps> = ({
+  searchList,
+  searchValue
+}) => {
+  return (
+    <Container>
+      <Title>
+        <SearchWord>{searchValue}</SearchWord>
+      </Title>
+      {renderSearchList(searchList)}
+    </Container>
+  );
+};
+
+const renderSearchList = (searchList) => {
+  if (searchList !== []) {
+    return searchList.map((item, index) => {
+      return (
+        <DefinitionWrapper key={index}>
+          <EntryHeader>
+            <SearchWord>{item.hwi.hw}</SearchWord>
+            <Fl>{item.fl}</Fl>
+            <EntryAttr>
+              {item.hwi.prs != null ? `/${item.hwi.prs[0].mw}/` : ''}
+            </EntryAttr>
+          </EntryHeader>
+          <Vg>
+            <VgHeader>
+              <h2>Definition of {item.meta.id}</h2>
+            </VgHeader>
+            <VgContent>
+              {item.shortdef.map((def, i) => {
+                return (
+                  <div key={i}>
+                    <span>{i + 1}.</span>
+                    <div>{def}</div>
+                  </div>
+                );
+              })}
+            </VgContent>
+          </Vg>
+        </DefinitionWrapper>
+      );
+    });
+  } else {
+    return '';
+  }
+};
+
 const Container = styled.div`
   margin-top: 110px;
   padding-top: 30px;
@@ -93,64 +146,11 @@ const VgContent = styled.div`
     letter-spacing: 0.2px;
     line-height: 22px;
     margin-bottom: 25px;
-    
+
     > span {
       font-weight: bold;
     }
   }
 `;
-
-interface IProps {
-  searchList: any;
-  searchValue: string;
-}
-const DefinitionPresenter: React.SFC<IProps> = ({
-  searchList,
-  searchValue
-}) => {
-  return (
-    <Container>
-      <Title>
-        <SearchWord>{searchValue}</SearchWord>
-      </Title>
-      {renderSearchList(searchList)}
-    </Container>
-  );
-};
-
-const renderSearchList = (searchList) => {
-  if (searchList !== []) {
-    return searchList.map((item, index) => {
-      return (
-        <DefinitionWrapper key={index}>
-          <EntryHeader>
-            <SearchWord>{item.hwi.hw}</SearchWord>
-            <Fl>{item.fl}</Fl>
-            <EntryAttr>
-              {item.hwi.prs != null ? `/${item.hwi.prs[0].mw}/` : ''}
-            </EntryAttr>
-          </EntryHeader>
-          <Vg>
-            <VgHeader>
-              <h2>Definition of {item.meta.id}</h2>
-            </VgHeader>
-            <VgContent>
-              {item.shortdef.map((def, i) => {
-                return (
-                  <div key={i}>
-                    <span>{i + 1}.</span>
-                    <div>{def}</div>
-                  </div>
-                );
-              })}
-            </VgContent>
-          </Vg>
-        </DefinitionWrapper>
-      );
-    });
-  } else {
-    return '';
-  }
-};
 
 export default DefinitionPresenter;

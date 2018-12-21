@@ -1,6 +1,16 @@
 import React from 'react';
 import styled from '../../typed-components';
 
+interface IProps {
+  type: string;
+  placeholder?: string;
+  inputRef?: React.RefObject<HTMLInputElement>;
+}
+
+const Input: React.SFC<IProps> = ({ type, placeholder, inputRef }) => (
+  <InputBox type={type} placeholder={placeholder} ref={inputRef} />
+);
+
 const InputBox = styled.input`
   font-family: 'OpenSans', sans-serif;
   outline: 0;
@@ -12,15 +22,5 @@ const InputBox = styled.input`
   box-sizing: border-box;
   font-size: 14px;
 `;
-
-interface IProps {
-  type: string;
-  placeholder?: string;
-  inputRef?: React.RefObject<HTMLInputElement>;
-}
-
-const Input: React.SFC<IProps> = ({ type, placeholder, inputRef }) => (
-  <InputBox type={type} placeholder={placeholder} ref={inputRef} />
-);
 
 export default Input;

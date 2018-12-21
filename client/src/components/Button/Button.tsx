@@ -1,6 +1,15 @@
 import React from 'react';
 import styled from '../../typed-components';
 
+interface IProps {
+  name?: string;
+  onClick: () => void;
+}
+
+const Button: React.SFC<IProps> = ({ name, onClick }) => (
+  <Container onClick={onClick}>{name}</Container>
+);
+
 const Container = styled.button`
   font-family: 'OpenSans', sans-serif;
   text-transform: uppercase;
@@ -15,14 +24,5 @@ const Container = styled.button`
   transition: all 0.3 ease;
   cursor: pointer;
 `;
-
-interface IProps {
-  name?: string;
-  onClick: () => void;
-}
-
-const Button: React.SFC<IProps> = ({ name, onClick }) => (
-  <Container onClick={onClick}>{name}</Container>
-);
 
 export default Button;
