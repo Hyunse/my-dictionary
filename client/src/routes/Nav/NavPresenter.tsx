@@ -96,7 +96,7 @@ const NavItem = styled.li`
 
   > a {
     color: #e4e4e4;
-    font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     letter-spacing: 0.0625em;
     padding: 0 0.6875em;
     text-decoration: none;
@@ -105,15 +105,37 @@ const NavItem = styled.li`
 `;
 
 interface IProps {
-  inputRef: React.RefObject<HTMLInputElement>;
   clickSearch: () => void;
+  clickLogout: () => void;
   handleKeyPress: (e) => void;
+  logined: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
 }
+
+const NavItems = (logined: boolean, clickLogout: () => void) => {
+  if (!logined) {
+    return (
+      <NavItem>
+        <a href="/login">Login</a>
+      </NavItem>
+    );
+  }
+
+  return (
+    <NavItem>
+      <a href="#" onClick={clickLogout}>
+        Logout
+      </a>
+    </NavItem>
+  );
+};
 
 const NavPresenter: React.SFC<IProps> = ({
   clickSearch,
-  inputRef,
-  handleKeyPress
+  clickLogout,
+  handleKeyPress,
+  logined,
+  inputRef
 }) => {
   return (
     <Container>
@@ -122,11 +144,7 @@ const NavPresenter: React.SFC<IProps> = ({
       </svg>
       <SearchContainer>
         <Navbar>
-          <NavList>
-            <NavItem>
-              <a href="/login">Login</a>
-            </NavItem>
-          </NavList>
+          <NavList>{NavItems(logined, clickLogout)}</NavList>
         </Navbar>
         <Search>
           <Input type="text" ref={inputRef} onKeyPress={handleKeyPress} />

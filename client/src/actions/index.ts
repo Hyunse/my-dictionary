@@ -5,6 +5,7 @@ import {
   API_SUCCESS,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  LOGOUT,
   SAVE_VALUE
 } from './types';
 
@@ -40,6 +41,13 @@ export const searchWords = (searchValue: string) => async (dispatch) => {
   }
 };
 
+/**
+ * Sign In
+ * @param {string} email
+ * @param {string} password
+ * @param {function} callback
+ * @desc Sigin In User
+ */
 export const signIn = (email: string, password: string, callback: ()=> void) => async (dispatch) => {
   try {
     const response = await axios.post(
@@ -55,7 +63,7 @@ export const signIn = (email: string, password: string, callback: ()=> void) => 
       type: LOGIN_SUCCESS
     });
     
-    // Set JWT
+    // Set Token
     localStorage.setItem('token', response.data.token);
 
     callback();
@@ -65,4 +73,15 @@ export const signIn = (email: string, password: string, callback: ()=> void) => 
       type: LOGIN_FAIL
     });
   }
+};
+
+export const signOut = () => (dispatch) => {
+
+  dispatch({
+    payload: 'Logout',
+    type: LOGOUT
+  });
+
+  // Init Token
+  localStorage.setItem('token', '');
 };

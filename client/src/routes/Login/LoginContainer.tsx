@@ -33,6 +33,20 @@ class LoginContainer extends Component<IProps, {}> {
     this.passwordInputRef = React.createRef();
   }
 
+  public componentDidMount() {
+    this.shouldNavigateAway();
+  }
+
+  public componentDidUpdate() {
+    this.shouldNavigateAway();
+  }
+
+  public shouldNavigateAway() {
+    if (this.props.auth) {
+      this.props.history.push('/');
+    }
+  }
+
   public clickLogin = () => {
     const userId = this.userIdInputRef.current;
     const password = this.passwordInputRef.current;
@@ -58,23 +72,12 @@ class LoginContainer extends Component<IProps, {}> {
   }
 }
 
-/**
- * mapStateToProps
- *
- * @param state : state from store
- * @return searchList.data
- */
 const mapStateToProps = (state) => {
   return {
     auth: state.auth.authenticated
   };
 };
 
-/**
- * mapDispatchToProps
- *
- * @param dispatch
- */
 const mapDispatchToProps = (dispatch) => {
   return {
     signIn: (userId, password, callback) => {

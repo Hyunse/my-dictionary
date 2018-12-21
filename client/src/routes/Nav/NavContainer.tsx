@@ -5,12 +5,14 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 import NavPresenter from './NavPresenter';
 
-interface IOwnProps {
+interface IOwnProps {}
+
+interface IStateProps {
+  auth: string;
 }
 
-interface IStateProps {}
-
 interface IDispatchProps {
+  signOut: () => void;
   searchWords: (value: string) => void;
 }
 
@@ -18,6 +20,7 @@ type IProps = IStateProps & IDispatchProps & IOwnProps & RouteComponentProps;
 
 class NavContainer extends Component<IProps> {
   private inputRef: React.RefObject<HTMLInputElement>;
+  private logined: boolean;
 
   /**
    * Create MainContainer
@@ -25,8 +28,23 @@ class NavContainer extends Component<IProps> {
    */
   constructor(props: IProps) {
     super(props);
+    this.logined = this.checkAuth();
     this.inputRef = React.createRef();
     this.clickSearch = this.clickSearch.bind(this);
+  }
+
+  public componentDidUpdate = () => {
+    this.logined = this.checkAuth();
+  }
+
+  /**
+   * Check Authenticated
+   */
+  public checkAuth() {
+    if (!this.props.auth) {
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -34,10 +52,10 @@ class NavContainer extends Component<IProps> {
    */
   public handleKeyPress = (e) => {
     // Enter
-    if(e.charCode === 13) {
+    if (e.charCode === 13) {
       this.clickSearch();
     }
-  }
+  };
 
   /**
    * Click Search Button
@@ -48,35 +66,52 @@ class NavContainer extends Component<IProps> {
     if (inputSearch) {
       // Create Action searchWords
       this.props.searchWords(inputSearch.value);
-      if(this.props.history) {
+      if (this.props.history) {
         this.props.history.push(`/dictionary/${inputSearch.value}`);
       }
     }
   };
 
+  /**
+   * Click Logout Button
+   */
+  public clickLogout = () => {
+    this.props.signOut();
+  };
+
   public render() {
     return (
-      <NavPresenter inputRef={this.inputRef} clickSearch={this.clickSearch} handleKeyPress={this.handleKeyPress}/>
+      <NavPresenter
+        logined={this.logined}
+        inputRef={this.inputRef}
+        clickSearch={this.clickSearch}
+        clickLogout={this.clickLogout}
+        handleKeyPress={this.handleKeyPress}
+      />
     );
   }
 }
 
-/**
- * mapDispatchToProps
- *
- * @param dispatch
- */
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth.authenticated
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     searchWords: (searchValue) => {
       dispatch(actions.searchWords(searchValue));
+    },
+    signOut: () => {
+      dispatch(actions.signOut());
     }
   };
 };
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(NavContainer)
 );
