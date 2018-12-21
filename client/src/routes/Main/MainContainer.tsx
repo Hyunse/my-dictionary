@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import requireAuth from '../../hocs/requireAuth';
 import MainPresenter from './MainPresenter';
 
 interface IOwnProps {}
@@ -33,4 +32,4 @@ class MainContainer extends Component<IProps, {}> {
 }
 
 
-export default requireAuth(MainContainer);
+export default MainContainer;
