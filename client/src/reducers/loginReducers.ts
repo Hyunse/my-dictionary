@@ -7,12 +7,12 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOGIN_FAIL:
-      return { ...state, logined: false };
+      return { ...state, auth: action.ok };
     case LOGIN_SUCCESS:
-      return { ...state, logined: true };
+      return { ...state, auth: action.ok };
     case LOGOUT:
-      return { ...state, logined: false };
+      return { ...state, auth: action.ok };
     default:
-      return { ...state, logined: false };
+      return { ...state, auth: action.ok };
   }
 }
