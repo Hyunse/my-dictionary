@@ -8,22 +8,30 @@ interface IProps {
   userIdInputRef: React.RefObject<HTMLInputElement>;
   passwordInputRef: React.RefObject<HTMLInputElement>;
   errorMessage: string;
+  handleKeyPress: (e: KeyboardEvent) => void;
 }
 
 const LoginPresenter: React.SFC<IProps> = ({
   clickLogin,
   userIdInputRef,
   passwordInputRef,
-  errorMessage
+  errorMessage,
+  handleKeyPress
 }) => {
   return (
     <Container>
       <Form>
-        <Input type="text" placeholder="username" inputRef={userIdInputRef} />
+        <Input
+          type="text"
+          placeholder="username"
+          inputRef={userIdInputRef}
+          handleKeyPress={handleKeyPress}
+        />
         <Input
           type="password"
           placeholder="password"
           inputRef={passwordInputRef}
+          handleKeyPress={handleKeyPress}
         />
         <Button onClick={clickLogin} name="LOGIN" />
         {errorBox(errorMessage)}

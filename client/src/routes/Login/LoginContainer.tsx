@@ -59,6 +59,13 @@ class LoginContainer extends Component<IProps, {}> {
     }
   };
 
+  // Handle Key Press
+  public handleKeyPress = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      this.clickLogin();
+    }
+  };
+
   /**
    * Render LoginContainer
    */
@@ -69,6 +76,7 @@ class LoginContainer extends Component<IProps, {}> {
         userIdInputRef={this.userIdInputRef}
         passwordInputRef={this.passwordInputRef}
         errorMessage={this.props.error}
+        handleKeyPress={this.handleKeyPress}
       />
     );
   }

@@ -5,10 +5,11 @@ interface IProps {
   type: string;
   placeholder?: string;
   inputRef?: React.RefObject<HTMLInputElement>;
+  handleKeyPress: (e: KeyboardEvent) => void;
 }
 
-const Input: React.SFC<IProps> = ({ type, placeholder, inputRef }) => (
-  <InputBox type={type} placeholder={placeholder} ref={inputRef} />
+const Input: React.SFC<IProps> = ({ type, placeholder, inputRef, handleKeyPress }) => (
+  <InputBox type={type} placeholder={placeholder} ref={inputRef} onKeyPress={handleKeyPress} />
 );
 
 const InputBox = styled.input`

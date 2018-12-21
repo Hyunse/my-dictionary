@@ -50,7 +50,7 @@ class NavContainer extends Component<IProps> {
   /**
    * Key Press
    */
-  public handleKeyPress = (e) => {
+  public handleKeyPress = (e: KeyboardEvent) => {
     // Enter
     if (e.charCode === 13) {
       this.clickSearch();
