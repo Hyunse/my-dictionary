@@ -9,6 +9,7 @@ interface IOwnProps {}
 
 interface IStateProps {
   auth: string;
+  error: string;
 }
 
 interface IDispatchProps {
@@ -67,6 +68,7 @@ class LoginContainer extends Component<IProps, {}> {
         clickLogin={this.clickLogin}
         userIdInputRef={this.userIdInputRef}
         passwordInputRef={this.passwordInputRef}
+        errorMessage={this.props.error}
       />
     );
   }
@@ -74,7 +76,8 @@ class LoginContainer extends Component<IProps, {}> {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth.authenticated
+    auth: state.auth.authenticated,
+    error: state.auth.errorMessage
   };
 };
 

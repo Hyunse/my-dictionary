@@ -69,7 +69,7 @@ export const signIn = (email: string, password: string, callback: ()=> void) => 
     callback();
   } catch (err) {
     dispatch({
-      payload: 'Login Fail',
+      payload: 'Email or Password Incorrect',
       type: LOGIN_FAIL
     });
   }

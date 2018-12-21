@@ -7,12 +7,14 @@ interface IProps {
   clickLogin: () => void;
   userIdInputRef: React.RefObject<HTMLInputElement>;
   passwordInputRef: React.RefObject<HTMLInputElement>;
+  errorMessage: string;
 }
 
 const LoginPresenter: React.SFC<IProps> = ({
   clickLogin,
   userIdInputRef,
-  passwordInputRef
+  passwordInputRef,
+  errorMessage
 }) => {
   return (
     <Container>
@@ -24,12 +26,21 @@ const LoginPresenter: React.SFC<IProps> = ({
           inputRef={passwordInputRef}
         />
         <Button onClick={clickLogin} name="LOGIN" />
+        {errorBox(errorMessage)}
         <Message>
           Not registered? <SignUp href="#">Create an account</SignUp>
         </Message>
       </Form>
     </Container>
   );
+};
+
+const errorBox = (errorMessage: string) => {
+  if (errorMessage) {
+    return <ErrorBox>{errorMessage}</ErrorBox>;
+  }
+
+  return '';
 };
 
 const Container = styled.div`
@@ -59,4 +70,10 @@ const SignUp = styled.a`
   color: #2d5f7c;
   text-decoration: none;
 `;
+
+const ErrorBox = styled.div`
+  margin-top: 20px;
+  color: #d63031;
+`;
+
 export default LoginPresenter;
