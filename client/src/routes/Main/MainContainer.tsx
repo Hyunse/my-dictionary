@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { RouteComponentProps } from 'react-router';
 import MainPresenter from './MainPresenter';
 
 interface IOwnProps {}
@@ -7,7 +8,7 @@ interface IStateProps {}
 
 interface IDispatchProps {}
 
-type IProps = IStateProps & IDispatchProps & IOwnProps;
+type IProps = IStateProps & IDispatchProps & IOwnProps & RouteComponentProps;
 
 /**
  * MainContainer
@@ -26,7 +27,7 @@ class MainContainer extends Component<IProps, {}> {
    */
   public render() {
     return (
-      <MainPresenter />
+      <MainPresenter url={this.props.match.url}/>
     );
   }
 }

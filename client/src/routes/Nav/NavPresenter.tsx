@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import styled from '../../typed-components';
 
 interface IProps {
@@ -44,7 +45,7 @@ const NavItems = (logined: boolean, clickLogout: () => void) => {
   if (!logined) {
     return (
       <NavItem>
-        <a href="/login">Login</a>
+        <Link to="/login">Login</Link>
       </NavItem>
     );
   }

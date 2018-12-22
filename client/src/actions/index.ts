@@ -12,9 +12,10 @@ import {
 /**
  * Search Word
  * @param {string} searchValue
+ * @param {function} callback
  * @desc call merriam webster dictionary api
  */
-export const searchWords = (searchValue: string) => async (dispatch) => {
+export const searchWords = (searchValue: string, callback: () => void) => async (dispatch) => {
   try {
     const response = await axios.get(
       `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${searchValue}?key=${
@@ -33,6 +34,8 @@ export const searchWords = (searchValue: string) => async (dispatch) => {
       payload: searchValue,
       type: SAVE_VALUE
     });
+
+    callback();
   } catch (err) {
     dispatch({
       payload: 'API Call Error',

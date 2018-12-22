@@ -13,7 +13,7 @@ interface IStateProps {
 
 interface IDispatchProps {
   signOut: () => void;
-  searchWords: (value: string) => void;
+  searchWords: (value: string, callback: () => void) => void;
 }
 
 type IProps = IStateProps & IDispatchProps & IOwnProps & RouteComponentProps;
@@ -22,10 +22,6 @@ class NavContainer extends Component<IProps> {
   private inputRef: React.RefObject<HTMLInputElement>;
   private logined: boolean;
 
-  /**
-   * Create MainContainer
-   * @param {IProps} props
-   */
   constructor(props: IProps) {
     super(props);
     this.logined = this.checkAuth();
@@ -35,7 +31,7 @@ class NavContainer extends Component<IProps> {
 
   public componentDidUpdate = () => {
     this.logined = this.checkAuth();
-  }
+  };
 
   /**
    * Check Authenticated
@@ -65,10 +61,9 @@ class NavContainer extends Component<IProps> {
 
     if (inputSearch) {
       // Create Action searchWords
-      this.props.searchWords(inputSearch.value);
-      if (this.props.history) {
+      this.props.searchWords(inputSearch.value, () => {
         this.props.history.push(`/dictionary/${inputSearch.value}`);
-      }
+      });
     }
   };
 
@@ -100,8 +95,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchWords: (searchValue) => {
-      dispatch(actions.searchWords(searchValue));
+    searchWords: (searchValue, callback) => {
+      dispatch(actions.searchWords(searchValue, callback));
     },
     signOut: () => {
       dispatch(actions.signOut());

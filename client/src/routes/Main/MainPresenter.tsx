@@ -5,16 +5,18 @@ import Definition from '../Definition';
 import Home from '../Home';
 import Nav from '../Nav';
 
-interface IProps {}
+interface IProps {
+  url: string;
+}
 
-const MainPresenter: React.SFC<IProps> = () => {
+const MainPresenter: React.SFC<IProps> = ({ url }) => {
   return (
     <Container>
       <Header>
         <Nav />
       </Header>
-      <Route exact={true} path={'/'} component={Home} />
-      <Route path={'/dictionary/:searchValue'} component={Definition} />
+      <Route exact={true} path={`${url}`} component={Home} />
+      <Route path={`${url}dictionary/:searchValue`} component={Definition} />
     </Container>
   );
 };
