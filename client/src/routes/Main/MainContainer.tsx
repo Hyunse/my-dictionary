@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
+import requireAuth from '../../hocs/requireAuth';
 import MainPresenter from './MainPresenter';
 
 interface IOwnProps {}
@@ -32,5 +33,4 @@ class MainContainer extends Component<IProps, {}> {
   }
 }
 
-
-export default MainContainer;
+export default requireAuth(MainContainer);
