@@ -67,26 +67,36 @@ class UserController {
     // Param
     let user = req.body;
 
-    const duplicatedUser = await Models.user.findOne({ where: {
-      email: user.email
-    }});
+    const duplicatedUser = await Models.user.findOne({
+      where: {
+        email: user.email
+      }
+    });
 
-    if(duplicatedUser) {
+    if (duplicatedUser) {
       throw {
         ok: false,
         status: 409,
         message: `Email already exist.`,
         token: null
-      }
+      };
     }
 
     // bcrypt password
     user.password = await PasswordUtil.encryptPassword(user.password);
 
     // Add User
-    const newUser = await Models.user.create({ ...user });
+    const newUser = await Models.user.create({ ...user }).then((res: User) => {
+      return res;
+    });
 
-    res.send(newUser);
+    const token = JwtUtil.createJWT(newUser.id);
+
+    res.send({
+      ok: true,
+      message: null,
+      token
+    });
   });
 
   /**

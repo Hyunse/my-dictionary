@@ -6,7 +6,9 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT,
-  SAVE_VALUE
+  SAVE_VALUE,
+  SIGN_UP_FAIL,
+  SIGN_UP_SUCCESS
 } from './types';
 
 /**
@@ -15,7 +17,10 @@ import {
  * @param {function} callback
  * @desc call merriam webster dictionary api
  */
-export const searchWords = (searchValue: string, callback: () => void) => async (dispatch) => {
+export const searchWords = (
+  searchValue: string,
+  callback: () => void
+) => async (dispatch) => {
   try {
     const response = await axios.get(
       `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${searchValue}?key=${
@@ -51,7 +56,11 @@ export const searchWords = (searchValue: string, callback: () => void) => async 
  * @param {function} callback
  * @desc Sigin In User
  */
-export const signIn = (email: string, password: string, callback: ()=> void) => async (dispatch) => {
+export const signIn = (
+  email: string,
+  password: string,
+  callback: () => void
+) => async (dispatch) => {
   try {
     const response = await axios.post(
       `http://${server.dev.url}:${server.dev.port}/user/signIn`,
@@ -65,7 +74,7 @@ export const signIn = (email: string, password: string, callback: ()=> void) => 
       payload: response.data.token,
       type: LOGIN_SUCCESS
     });
-    
+
     // Set Token
     localStorage.setItem('token', response.data.token);
 
@@ -79,7 +88,6 @@ export const signIn = (email: string, password: string, callback: ()=> void) => 
 };
 
 export const signOut = () => (dispatch) => {
-
   dispatch({
     payload: 'Logout',
     type: LOGOUT
@@ -87,4 +95,39 @@ export const signOut = () => (dispatch) => {
 
   // Init Token
   localStorage.setItem('token', '');
+};
+
+export const signUp = (
+  name: string,
+  password: string,
+  email: string,
+  country: string,
+  callback: () => void
+) => async (dispatch) => {
+  try {
+    const response = await axios.post(
+      `http://${server.dev.url}:${server.dev.port}/user/signUp`,
+      {
+        country,
+        email,
+        name,
+        password
+      }
+    );
+
+    dispatch({
+      payload: response.data.token,
+      type: SIGN_UP_SUCCESS
+    });
+
+    // Set Token
+    localStorage.setItem('token', response.data.token);
+
+    callback();
+  } catch (err) {
+    dispatch({
+      payload: 'Signup Fail',
+      type: SIGN_UP_FAIL
+    });
+  }
 };

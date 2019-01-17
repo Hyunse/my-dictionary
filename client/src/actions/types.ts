@@ -9,3 +9,7 @@ export const SAVE_VALUE = 'save_value'
 export const LOGIN_SUCCESS = 'login_success';
 export const LOGIN_FAIL = 'login_fail';
 export const LOGOUT = 'logout'
+
+// Signup
+export const SIGN_UP_SUCCESS = 'sign_up_success';
+export const SIGN_UP_FAIL = 'sign_up_fail';

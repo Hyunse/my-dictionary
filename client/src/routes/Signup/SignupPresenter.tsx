@@ -5,21 +5,26 @@ import Input from '../../components/Input';
 import styled from '../../typed-components';
 
 interface IProps {
-  // clickLogin: () => void;
-  // userIdInputRef: React.RefObject<HTMLInputElement>;
-  // passwordInputRef: React.RefObject<HTMLInputElement>;
-  // handleKeyPress: (e: KeyboardEvent) => void;
+  clickSignup: () => void;
+  clickCancel: () => void;
+  handleKeyPress: (e: KeyboardEvent) => void;
+  userIdInputRef: React.RefObject<HTMLInputElement>;
+  emailInputRef: React.RefObject<HTMLInputElement>;
+  passwordInputRef: React.RefObject<HTMLInputElement>;
+  passwordConfirmInputRef: React.RefObject<HTMLInputElement>;
+  countryInputRef: React.RefObject<HTMLInputElement>;
 }
 
-const SignupPresenter: React.SFC<IProps> = () => {
-  // TODO: Temp
-  const handleKeyPress = () => {
-    alert('1');
-  };
-  const clickSignup = () => {
-    alert('sign up');
-  }
-
+const SignupPresenter: React.SFC<IProps> = ({
+  handleKeyPress,
+  clickSignup,
+  clickCancel,
+  userIdInputRef,
+  emailInputRef,
+  passwordInputRef,
+  passwordConfirmInputRef,
+  countryInputRef
+}) => {
   return (
     <Container>
       <Wrapper>
@@ -32,33 +37,34 @@ const SignupPresenter: React.SFC<IProps> = () => {
                 type="text"
                 placeholder="Name"
                 handleKeyPress={handleKeyPress}
+                inputRef={userIdInputRef}
               />
               <Input
                 type="text"
                 placeholder="Email"
                 handleKeyPress={handleKeyPress}
+                inputRef={emailInputRef}
               />
               <Input
-                type="text"
+                type="password"
                 placeholder="Password"
                 handleKeyPress={handleKeyPress}
+                inputRef={passwordInputRef}
               />
               <Input
-                type="text"
+                type="password"
                 placeholder="Confirm Password"
                 handleKeyPress={handleKeyPress}
+                inputRef={passwordConfirmInputRef}
               />
               <Input
                 type="text"
                 placeholder="Country"
                 handleKeyPress={handleKeyPress}
-              />
-              <Input
-                type="text"
-                placeholder="Name"
-                handleKeyPress={handleKeyPress}
+                inputRef={countryInputRef}
               />
               <Button onClick={clickSignup} name="SIGN UP" />
+              <Button onClick={clickCancel} name="Cancel" />
             </Form>
           </Body>
         </Card>
@@ -96,6 +102,11 @@ const Body = styled.div`
   padding: 0 90px;
   padding-top: 55px;
   padding-bottom: 65px;
+
+  button[name='Cancel'] {
+    margin-top: 10px;
+    background: #c8d6e5;
+  }
 `;
 
 const Title = styled.h2`

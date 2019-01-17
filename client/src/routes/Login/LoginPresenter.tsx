@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import styled from '../../typed-components';
@@ -36,7 +37,10 @@ const LoginPresenter: React.SFC<IProps> = ({
         <Button onClick={clickLogin} name="LOGIN" />
         {errorBox(errorMessage)}
         <Message>
-          Not registered? <SignUp href="#">Create an account</SignUp>
+          Not registered?{' '}
+          <Link to="/signup">
+            <SignUp>Create an account</SignUp>
+          </Link>
         </Message>
       </Form>
     </Container>
@@ -74,7 +78,7 @@ const Message = styled.p`
   font-size: 12px;
 `;
 
-const SignUp = styled.a`
+const SignUp = styled.span`
   color: #2d5f7c;
   text-decoration: none;
 `;

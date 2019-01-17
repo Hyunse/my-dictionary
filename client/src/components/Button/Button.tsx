@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const Button: React.SFC<IProps> = ({ name, onClick }) => (
-  <Container onClick={onClick}>{name}</Container>
+  <Container onClick={onClick} name={name}>{name}</Container>
 );
 
 const Container = styled.button`
