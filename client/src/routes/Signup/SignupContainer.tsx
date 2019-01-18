@@ -39,9 +39,36 @@ class SignupContainer extends Component<IProps, {}> {
   /**
    * Validate values before signup
    */
-  public validateInput = () => {
-    // TODO: Validation
-    alert('!!');
+  public validateInput = (name, password, passwordConfirm, email, country) => {
+    const emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+    if (!name) {
+      alert('Please Enter Name.');
+    }
+
+    if (!password) {
+      // TODO: Check Password Length
+      alert('Please Enter Password.');
+    }
+
+    if (password !== passwordConfirm) {
+      alert(`Password isn't same`);
+    }
+
+    if (!email) {
+      // TODO: Check Email Form
+      alert(`Please Enter Email`);
+    }
+
+    if (!email.match(emailRegExp)) {
+      alert('Please Enter Right Email');
+    }
+
+    if (!country) {
+      alert('Please Enter Country');
+    }
+
+    return true;
   };
 
   public handleKeyPress = (e: KeyboardEvent) => {
@@ -52,18 +79,20 @@ class SignupContainer extends Component<IProps, {}> {
   public clickSignup = () => {
     const userId = this.userIdInputRef.current;
     const password = this.passwordInputRef.current;
-    // const passwordConfirm = this.passwordConfirmInputRef.current;
+    const passwordConfirm = this.passwordConfirmInputRef.current;
     const email = this.emailInputRef.current;
     const country = this.countryInputRef.current;
-
-    if (userId && password && email && country) {
-      this.props.signUp(
-        userId.value,
-        password.value,
-        email.value,
-        country.value,
-        () => this.props.history.push('/')
-      );
+    
+    if (this.validateInput(name, password, passwordConfirm, email, country)) {
+      if (userId && password && email && country) {
+        this.props.signUp(
+          userId.value,
+          password.value,
+          email.value,
+          country.value,
+          () => this.props.history.push('/')
+        );
+      }
     }
   };
 
