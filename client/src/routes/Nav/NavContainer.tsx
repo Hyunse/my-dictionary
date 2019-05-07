@@ -68,6 +68,13 @@ class NavContainer extends Component<IProps> {
   };
 
   /**
+   *  Click Home Image
+   */
+  public clickHome = () => {
+    this.props.history.push(`/`);
+  }
+
+  /**
    * Click Logout Button
    */
   public clickLogout = () => {
@@ -79,6 +86,7 @@ class NavContainer extends Component<IProps> {
       <NavPresenter
         logined={this.logined}
         inputRef={this.inputRef}
+        clickHome={this.clickHome}
         clickSearch={this.clickSearch}
         clickLogout={this.clickLogout}
         handleKeyPress={this.handleKeyPress}

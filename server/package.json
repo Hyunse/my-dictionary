@@ -13,6 +13,7 @@
     "typescript": "^3.2.1"
   },
   "scripts": {
+    "start": "nodemon --exec ts-node index.ts",
     "dev": "cd src && nodemon --exec ts-node index.ts"
   },
   "dependencies": {
