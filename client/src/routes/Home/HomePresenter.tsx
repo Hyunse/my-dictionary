@@ -1,10 +1,15 @@
 import React from 'react';
 import styled from '../../typed-components';
+import Slide from '../Slide';
 
 interface IProps {}
 
 const HomePresenter: React.SFC<IProps> = () => {
-  return <Container>Home</Container>;
+  return (
+    <Container>
+      <Slide />
+    </Container>
+  );
 };
 
 const Container = styled.div`
