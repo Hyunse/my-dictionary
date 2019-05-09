@@ -3,6 +3,8 @@ import styled from '../../typed-components';
 
 interface ISlide {
   hide: boolean,
+  text: string,
+  textHead: string,
   src: string
 }
 
@@ -22,12 +24,21 @@ const SlidePresenter: React.SFC<IProps> = ({ slides, dots, nextSlide, currentSli
   return (
     <Container>
       {slides.map((slide: ISlide, idx) => {
-        return <SlideImg key={idx} src={slide.src} className={slide.hide ? 'hide' : ''} />;
+        return (
+          <SlideContainer key={idx}>
+            <SlideImg src={slide.src} className={slide.hide ? 'hide' : ''} />
+            <TextBox className={slide.hide ? 'hide' : ''}>
+              <TextHead>{slide.textHead}</TextHead>
+              <TextContent>{slide.text}</TextContent>
+            </TextBox>
+          </SlideContainer>
+        );
       })}
       <Arrow className="prev" onClick={nextSlide} value="-1">&#10094;</Arrow>
       <Arrow className="next" onClick={nextSlide} value="1">&#10095;</Arrow>
+
       {dots.map((dot: IDot, idx) => {
-        return <Dot key={idx} value={idx+1} className={dot.active ? 'active' : ''} onClick={currentSlide} />
+        return <Dot key={idx} value={idx + 1} className={dot.active ? 'active' : ''} onClick={currentSlide} />
       })}
     </Container>
   );
@@ -65,6 +76,9 @@ const Container = styled.div`
   }
 `;
 
+const SlideContainer = styled.div`
+`
+
 const SlideImg = styled.img`
   display: block;
   width: 100%;
@@ -85,7 +99,27 @@ const Arrow = styled.a`
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
+`
 
+const TextBox = styled.div`
+  position: absolute;
+  width: 100%;
+  bottom: -20px;
+  background: rgba(255,255,255,.92);
+  opacity: 0.5;
+  z-index: 1;
+`;
+
+const TextHead = styled.p`
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+`
+
+const TextContent = styled.p`
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
 `
 
 const Dot = styled.span`

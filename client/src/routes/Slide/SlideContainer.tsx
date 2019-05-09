@@ -3,7 +3,9 @@ import SlidePresenter from './SlidePresenter';
 
 interface ISlide {
   hide: boolean,
-  src: string
+  src: string,
+  text: string,
+  textHead: string
 }
 
 interface IDot {
@@ -36,7 +38,17 @@ class SlideContainer extends Component<IProps, IState> {
     'https://images.unsplash.com/photo-1451226428352-cf66bf8a0317?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80',
     'https://images.unsplash.com/photo-1478812954026-9c750f0e89fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
     'https://images.unsplash.com/photo-1457131760772-7017c6180f05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1636&q=80'
-  ]
+  ];
+  private textHead = [
+    'We Added New Words to the Dictionary in April 2019',
+    'Try the My Dictionary Traveler!',
+    'Welcome'
+  ];
+  private text = [
+    'From Merriam-Webster',
+    'Which words as old as you?',
+    'New Biggner'
+  ];
 
   /**
    * Create SlideContainer
@@ -55,7 +67,9 @@ class SlideContainer extends Component<IProps, IState> {
     for (let i = 0; i < this.slideLength; i++) {
       const slide : ISlide = {
         hide: true,
-        src: `${this.images[i]}`
+        src: `${this.images[i]}`,
+        text: this.text[i],
+        textHead: this.textHead[i]
       };
 
       const dot : IDot = {
