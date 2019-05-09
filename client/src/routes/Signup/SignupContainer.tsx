@@ -5,9 +5,9 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 import SignupPresenter from './SignupPresenter';
 
-interface IOwnProps {}
+interface IOwnProps { }
 
-interface IStateProps {}
+interface IStateProps { }
 
 interface IDispatchProps {
   signUp: (
@@ -39,36 +39,46 @@ class SignupContainer extends Component<IProps, {}> {
   /**
    * Validate values before signup
    */
-  public validateInput = (name, password, passwordConfirm, email, country) => {
+  public validateInput = (name: string, password: string, passwordConfirm: string, email: string, country: string) => {
     const emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    let valid = true;
 
     if (!name) {
       alert('Please Enter Name.');
-    }
-
-    if (!password) {
-      // TODO: Check Password Length
-      alert('Please Enter Password.');
-    }
-
-    if (password !== passwordConfirm) {
-      alert(`Password isn't same`);
+      valid = false;
     }
 
     if (!email) {
-      // TODO: Check Email Form
       alert(`Please Enter Email`);
+      valid = false;
     }
 
     if (!email.match(emailRegExp)) {
       alert('Please Enter Right Email');
+      valid = false;
+    }
+
+    if (!password) {
+      alert('Please Enter Password.');
+      valid = false;
+    }
+    
+    if(password.length < 6) {
+      alert('Password is too short');
+      valid = false;
+    }
+
+    if (password !== passwordConfirm) {
+      alert(`Password isn't same`);
+      valid = false;
     }
 
     if (!country) {
       alert('Please Enter Country');
+      valid = false;
     }
 
-    return true;
+    return valid;
   };
 
   public handleKeyPress = (e: KeyboardEvent) => {
@@ -82,9 +92,9 @@ class SignupContainer extends Component<IProps, {}> {
     const passwordConfirm = this.passwordConfirmInputRef.current;
     const email = this.emailInputRef.current;
     const country = this.countryInputRef.current;
-    
-    if (this.validateInput(name, password, passwordConfirm, email, country)) {
-      if (userId && password && email && country) {
+
+    if (userId && password && passwordConfirm && email && country) {
+      if (this.validateInput(userId.value, password.value, passwordConfirm.value, email.value, country.value)) {
         this.props.signUp(
           userId.value,
           password.value,
