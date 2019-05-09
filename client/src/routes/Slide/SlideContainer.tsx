@@ -10,7 +10,12 @@ interface IDot {
   active: boolean
 }
 
-interface IOwnProps { }
+interface IState {
+  dots: IDot[],
+  slides: ISlide[]
+}
+
+interface IOwnProps {}
 
 interface IStateProps { }
 
@@ -21,12 +26,17 @@ type IProps = IStateProps & IDispatchProps & IOwnProps;
 /**
  * SlideContainer
  */
-class SlideContainer extends Component<IProps, {}> {
+class SlideContainer extends Component<IProps, IState> {
 
   private slideIndex = 1;
   private slideLength = 3;
   private slides: ISlide[] = [];
   private dots: IDot[] = [];
+  private images = [
+    'https://images.unsplash.com/photo-1451226428352-cf66bf8a0317?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80',
+    'https://images.unsplash.com/photo-1478812954026-9c750f0e89fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    'https://images.unsplash.com/photo-1457131760772-7017c6180f05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1636&q=80'
+  ]
 
   /**
    * Create SlideContainer
@@ -35,14 +45,17 @@ class SlideContainer extends Component<IProps, {}> {
   constructor(props: IProps) {
     super(props);
     this.init();
-
+    this.state = {
+      dots: this.dots,
+      slides: this.slides
+    };
   }
 
   public init = () => {
     for (let i = 0; i < this.slideLength; i++) {
       const slide : ISlide = {
         hide: true,
-        src: `/image/home_${i+1}.jpg`
+        src: `${this.images[i]}`
       };
 
       const dot : IDot = {
@@ -59,12 +72,16 @@ class SlideContainer extends Component<IProps, {}> {
     }
   }
 
-  public nextSlide = (n) => {
-    this.showSlide(this.slideIndex += n);
+  public nextSlide = (e) => {
+    const value = parseInt(e.target.getAttribute('value'), 10);
+    this.slideIndex += value;
+    this.showSlide(this.slideIndex);
   }
 
-  public currentSlide = (n) => {
-    this.showSlide(this.slideIndex = n);
+  public currentSlide = (e) => {
+    const value =  parseInt(e.target.getAttribute('value'), 10);
+    this.slideIndex = value;
+    this.showSlide(this.slideIndex);
   }
 
   public showSlide = (n) => {
@@ -87,6 +104,11 @@ class SlideContainer extends Component<IProps, {}> {
 
     this.slides[this.slideIndex - 1].hide = false;
     this.dots[this.slideIndex - 1].active = true;
+
+    this.setState({
+      dots: this.dots,
+      slides:  this.slides
+    });
   }
 
 
@@ -95,7 +117,7 @@ class SlideContainer extends Component<IProps, {}> {
    */
   public render() {
     return (
-      <SlidePresenter slides={this.slides} dots={this.dots} />
+      <SlidePresenter slides={this.state.slides} dots={this.state.dots} currentSlide={this.currentSlide} nextSlide={this.nextSlide} />
     );
   }
 }
