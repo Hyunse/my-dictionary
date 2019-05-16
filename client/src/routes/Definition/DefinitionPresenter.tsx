@@ -3,29 +3,32 @@ import styled from '../../typed-components';
 
 interface IProps {
   searchList: any;
-  searchValue: string;
+  clickSave: (e: any) => void;
 }
 const DefinitionPresenter: React.SFC<IProps> = ({
   searchList,
-  searchValue
+  clickSave
 }) => {
   return (
     <Container>
-      <Title>
-        <SearchWord>{searchValue}</SearchWord>
-      </Title>
-      {renderSearchList(searchList)}
+      {renderSearchList(searchList, clickSave)}
     </Container>
   );
 };
 
-const renderSearchList = (searchList) => {
+const renderSearchList = (searchList, clickSave) => {
   if (searchList !== []) {
+    
+    // TODO: DELETE
+    // tslint:disable-next-line
+    console.log(searchList);
+
     return searchList.map((item, index) => {
       return (
         <DefinitionWrapper key={index}>
           <EntryHeader>
             <SearchWord>{item.hwi.hw}</SearchWord>
+            <SaveBtn value={index} onClick={clickSave}>Save</SaveBtn>
             <Fl>{item.fl}</Fl>
             <EntryAttr>
               {item.hwi.prs != null ? `/${item.hwi.prs[0].mw}/` : ''}
@@ -46,6 +49,7 @@ const renderSearchList = (searchList) => {
               })}
             </VgContent>
           </Vg>
+          <DivLine />
         </DefinitionWrapper>
       );
     });
@@ -61,14 +65,6 @@ const Container = styled.div`
   padding-left: 15px;
 `;
 
-const Title = styled.div`
-  text-align: center;
-
-  > h1 {
-    font-size: 120px;
-    color: #265667;
-  }
-`;
 
 const EntryHeader = styled.div`
   margin-bottom: 6px;
@@ -90,7 +86,9 @@ const SearchWord = styled.h1`
   word-wrap: break-word;
 `;
 
-const DefinitionWrapper = styled.div``;
+const DefinitionWrapper = styled.div`
+  margin-bottom: 20px;
+`;
 
 const Fl = styled.div`
   color: #4a7d95;
@@ -151,6 +149,21 @@ const VgContent = styled.div`
       font-weight: bold;
     }
   }
+`;
+
+const DivLine = styled.div`
+  background: #cbe1ea;
+  height: 6px;
+`;
+
+const SaveBtn = styled.button`
+    width: 100px;
+    height: 40px;
+    background-color: #2d5f7c;
+    float: right;
+    border: none;
+    color: white;
+    cursor: pointer;
 `;
 
 export default DefinitionPresenter;

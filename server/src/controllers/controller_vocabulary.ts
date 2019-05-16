@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import asyncHandler from '../middlewares/asyncHandler';
 import Models from '../models';
-// import { Vocabulary } from '../models/Vocabulary';
-// import JwtUtil from '../utils/util_jwt';
 
 class VocabularyController {
   constructor() {}
