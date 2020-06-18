@@ -6,7 +6,7 @@ import Main from '../../routes/Main';
 import Signup from '../../routes/Signup';
 
 const AppPresenter: React.SFC = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.BASENAME}>
     <React.Fragment>
       <GlobalStyle />
       <Switch>
