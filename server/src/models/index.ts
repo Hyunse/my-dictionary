@@ -9,6 +9,7 @@ const sequelize = new Sequelize(
   DBConfig[env].user || '',
   DBConfig[env].password || '',
   {
+    host: DBConfig[env].host,
     dialect: 'postgres',
     timezone: 'utc',
     operatorsAliases: false
