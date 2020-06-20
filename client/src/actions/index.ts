@@ -63,7 +63,7 @@ export const signIn = (
 ) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `http://${server.production.url}:${server.production.port}/user/signIn`,
+      `https://${server.production.url}/user/signIn`,
       {
         email,
         password
@@ -106,7 +106,7 @@ export const signUp = (
 ) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `http://${server.production.url}:${server.production.port}/user/signUp`,
+      `https://${server.production.url}/user/signUp`,
       {
         country,
         email,
