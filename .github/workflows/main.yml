@@ -17,7 +17,7 @@ jobs:
 
     - name: Build
       run: |
-        npm install
+        npm --prefix ./client install
         npm run-script ./client/build
       env:
         REACT_APP_API_PORT: ${{ secrets.REACT_APP_API_PORT}}
