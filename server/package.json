@@ -13,9 +13,8 @@
     "typescript": "^3.2.1"
   },
   "scripts": {
-    "run": "nodemon --exec ts-node src/index.ts",
-    "start": "ts-node src/index.ts",
-    "dev": "cd src && nodemon --exec ts-node index.ts"
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "start": "ts-node src/index.ts"
   },
   "dependencies": {
     "tslint-config-prettier": "^1.17.0",
