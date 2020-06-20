@@ -23,7 +23,7 @@ jobs:
         REACT_APP_API_PORT: ${{ secret.REACT_APP_API_PORT}}
         REACT_APP_API_URL: ${{ secret.REACT_APP_API_URL }}
         REACT_APP_BASENAME: ${{ secret.REACT_APP_BASENAME }} 
-        REACT_APP_DICTIONARY_KEY: ${{ REACT_APP_DICTIONARY_KEY }}
+        REACT_APP_DICTIONARY_KEY: ${{ secret.REACT_APP_DICTIONARY_KEY }}
         REACT_APP_NODE_ENV:  ${{ secret.REACT_APP_NODE_ENV }} 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
