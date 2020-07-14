@@ -10,7 +10,6 @@ import { errorHandler } from './middlewares/errorHandler';
 import { logHandler } from './middlewares/logHandler';
 import jwtHandler from './middlewares/jwtHandler';
 
-
 class App {
   public app;
 
@@ -34,7 +33,7 @@ class App {
   private logging = (): void => {
     this.app.use(logHandler);
     this.app.use(errorHandler);
-  }
+  };
 
   // Mount Routes
   private mountRoutes(): void {

@@ -28,7 +28,7 @@ const renderSearchList = (searchList, clickSave) => {
         <DefinitionWrapper key={index}>
           <EntryHeader>
             <SearchWord>{item.hwi.hw}</SearchWord>
-            <SaveBtn value={index} onClick={clickSave}>Save</SaveBtn>
+            {/* <SaveBtn value={index} onClick={clickSave}>Save</SaveBtn> */}
             <Fl>{item.fl}</Fl>
             <EntryAttr>
               {item.hwi.prs != null ? `/${item.hwi.prs[0].mw}/` : ''}
@@ -156,14 +156,14 @@ const DivLine = styled.div`
   height: 6px;
 `;
 
-const SaveBtn = styled.button`
-    width: 100px;
-    height: 40px;
-    background-color: #2d5f7c;
-    float: right;
-    border: none;
-    color: white;
-    cursor: pointer;
-`;
+// const SaveBtn = styled.button`
+//     width: 100px;
+//     height: 40px;
+//     background-color: #2d5f7c;
+//     float: right;
+//     border: none;
+//     color: white;
+//     cursor: pointer;
+// `;
 
 export default DefinitionPresenter;

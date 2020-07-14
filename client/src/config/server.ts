@@ -1,11 +1,11 @@
 export default {
-  'env': process.env.REACT_APP_NODE_ENV,
-  'development': {
+  env: process.env.REACT_APP_NODE_ENV,
+  development: {
     port: 5000,
-    url: 'localhost'
+    url: 'localhost',
   },
-  'production' : {
+  production: {
     port: process.env.REACT_APP_API_PORT,
-    url: process.env.REACT_APP_API_URL
-  }
-}
+    url: process.env.REACT_APP_API_URL,
+  },
+};
