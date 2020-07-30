@@ -8,7 +8,7 @@ import {
   LOGOUT,
   SAVE_VALUE,
   SIGN_UP_FAIL,
-  SIGN_UP_SUCCESS
+  SIGN_UP_SUCCESS,
 } from './types';
 
 /**
@@ -23,28 +23,26 @@ export const searchWords = (
 ) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${searchValue}?key=${
-        process.env.REACT_APP_DICTIONARY_KEY
-      }`
+      `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${searchValue}?key=${process.env.REACT_APP_DICTIONARY_KEY}`
     );
 
     // Dispatch : SearchList
     dispatch({
       payload: response.data,
-      type: API_SUCCESS
+      type: API_SUCCESS,
     });
 
     // Dispatch : SearchValue
     dispatch({
       payload: searchValue,
-      type: SAVE_VALUE
+      type: SAVE_VALUE,
     });
 
     callback();
   } catch (err) {
     dispatch({
       payload: 'API Call Error',
-      type: API_ERROR
+      type: API_ERROR,
     });
   }
 };
@@ -63,16 +61,16 @@ export const signIn = (
 ) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `https://${server.production.url}/user/signIn`,
+      `http://${server.development.url}/user/signIn`,
       {
         email,
-        password
+        password,
       }
     );
 
     dispatch({
       payload: response.data.token,
-      type: LOGIN_SUCCESS
+      type: LOGIN_SUCCESS,
     });
 
     // Set Token
@@ -82,7 +80,7 @@ export const signIn = (
   } catch (err) {
     dispatch({
       payload: 'Email or Password Incorrect',
-      type: LOGIN_FAIL
+      type: LOGIN_FAIL,
     });
   }
 };
@@ -90,7 +88,7 @@ export const signIn = (
 export const signOut = () => (dispatch) => {
   dispatch({
     payload: 'Logout',
-    type: LOGOUT
+    type: LOGOUT,
   });
 
   // Init Token
@@ -106,18 +104,18 @@ export const signUp = (
 ) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `https://${server.production.url}/user/signUp`,
+      `http://${server.development.url}/user/signUp`,
       {
         country,
         email,
         name,
-        password
+        password,
       }
     );
 
     dispatch({
       payload: response.data.token,
-      type: SIGN_UP_SUCCESS
+      type: SIGN_UP_SUCCESS,
     });
 
     // Set Token
@@ -127,7 +125,7 @@ export const signUp = (
   } catch (err) {
     dispatch({
       payload: 'Signup Fail',
-      type: SIGN_UP_FAIL
+      type: SIGN_UP_FAIL,
     });
   }
 };
