@@ -1,9 +1,11 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "rules": {
+    "ordered-imports": false,
     "no-empty-interface": false,
     "object-literal-sort-keys": false,
-    "no-console": false
+    "no-console": false,
+    "no-string-literal": false
   },
   "linterOptions": {
     "exclude": [

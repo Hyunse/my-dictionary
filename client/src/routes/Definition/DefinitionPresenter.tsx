@@ -19,16 +19,12 @@ const DefinitionPresenter: React.SFC<IProps> = ({
 const renderSearchList = (searchList, clickSave) => {
   if (searchList !== []) {
     
-    // TODO: DELETE
-    // tslint:disable-next-line
-    console.log(searchList);
-
     return searchList.map((item, index) => {
       return (
         <DefinitionWrapper key={index}>
           <EntryHeader>
             <SearchWord>{item.hwi.hw}</SearchWord>
-            {/* <SaveBtn value={index} onClick={clickSave}>Save</SaveBtn> */}
+            <SaveBtn value={index} onClick={clickSave}>Save</SaveBtn>
             <Fl>{item.fl}</Fl>
             <EntryAttr>
               {item.hwi.prs != null ? `/${item.hwi.prs[0].mw}/` : ''}
@@ -156,14 +152,14 @@ const DivLine = styled.div`
   height: 6px;
 `;
 
-// const SaveBtn = styled.button`
-//     width: 100px;
-//     height: 40px;
-//     background-color: #2d5f7c;
-//     float: right;
-//     border: none;
-//     color: white;
-//     cursor: pointer;
-// `;
+const SaveBtn = styled.button`
+    width: 100px;
+    height: 40px;
+    background-color: #2d5f7c;
+    float: right;
+    border: none;
+    color: white;
+    cursor: pointer;
+`;
 
 export default DefinitionPresenter;

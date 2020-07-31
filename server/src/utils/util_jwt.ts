@@ -28,7 +28,7 @@ class JwtUtil {
    */
   public decodeJWT = async (token: string): Promise<User | undefined> => {
     try {
-      const decoded: any = jwt.verify(token, `${process.env.JWT_TOKEN}`);
+      const decoded: any = jwt.verify(token.substr(token.indexOf(' ') + 1), `${process.env.JWT_TOKEN}`);
       const { id } = decoded;
       const user: User = await Models.user
         .findOne({ where: { id: id } })

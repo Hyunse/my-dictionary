@@ -11,29 +11,23 @@ class VocabularyController {
 
       const vocabularies = await Models.vocabulary.findAll({
         where: {
-          userId: id
-        }
+          userId: id,
+        },
       });
 
       res.send({
         ok: true,
-        data: vocabularies
+        data: vocabularies,
       });
     }
   );
 
-  public save = asyncHandler(async (req: Request, res: Response) => {
-    // Param
-    const word = req.body.word;
-    const format = req.body.format;
-    const definition = req.body.definition;
-    const user = req.body.user;
-
+  public save = asyncHandler(async (userId: number, word: string) => {
     const duplicatedVocabulary = await Models.vocabulary.findOne({
       where: {
-        id: user.id,
-        word: word
-      }
+        id: userId,
+        word: word,
+      },
     });
 
     if (duplicatedVocabulary) {
@@ -41,19 +35,20 @@ class VocabularyController {
         ok: false,
         status: 409,
         message: `The word already exist.`,
-        token: null
       };
     }
 
     // Add newVocabulary
-    const newVocabulary = await Models.vocabulary.create({
-      userId: user.id,
+    await Models.vocabulary.create({
+      userId,
       word,
-      format,
-      definition
     });
 
-    res.send(newVocabulary);
+    return {
+      ok: true,
+      status: 200,
+      message: `Successfully Saved`,
+    };
   });
 
   public delete = asyncHandler(async (req: Request, res: Response) => {
@@ -63,21 +58,21 @@ class VocabularyController {
     const result = await Models.vocabulary.destroy({
       where: {
         id: wordId,
-        userId: user.id
-      }
+        userId: user.id,
+      },
     });
 
-    if(result < 1) {
+    if (result < 1) {
       throw {
         ok: false,
         status: 404,
-        message: `The word couldn't be found.`
-      }
+        message: `The word couldn't be found.`,
+      };
     }
 
     res.send({
       ok: true,
-      message: `success to delete`
+      message: `success to delete`,
     });
   });
 }

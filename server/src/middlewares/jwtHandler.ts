@@ -13,8 +13,7 @@ const jwtHandler = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  const token = req.get('X-JWT');
-
+  const token: any = req.headers['authorization'];
   if (token) {
     const user = await JWTUtil.decodeJWT(token);
 

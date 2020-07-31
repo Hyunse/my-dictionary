@@ -13,3 +13,7 @@ export const LOGOUT = 'logout'
 // Signup
 export const SIGN_UP_SUCCESS = 'sign_up_success';
 export const SIGN_UP_FAIL = 'sign_up_fail';
+
+
+// Voca
+export const SAVE_VOCA = 'save_voca';
