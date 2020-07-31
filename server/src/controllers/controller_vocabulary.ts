@@ -1,28 +1,19 @@
-import { Request, Response } from 'express';
-import asyncHandler from '../middlewares/asyncHandler';
 import Models from '../models';
 
 class VocabularyController {
   constructor() {}
 
-  public findAllVocabulary = asyncHandler(
-    async (req: Request, res: Response) => {
-      const { id } = req.body.user;
+  public findAllVocabulary = async (userId: number) => {
+    const result = await Models.vocabulary.findAll({
+      where: {
+        userId,
+      },
+    });
 
-      const vocabularies = await Models.vocabulary.findAll({
-        where: {
-          userId: id,
-        },
-      });
+    return result;
+  };
 
-      res.send({
-        ok: true,
-        data: vocabularies,
-      });
-    }
-  );
-
-  public save = asyncHandler(async (userId: number, word: string) => {
+  public save = async (userId: number, word: string) => {
     const duplicatedVocabulary = await Models.vocabulary.findOne({
       where: {
         id: userId,
@@ -39,42 +30,24 @@ class VocabularyController {
     }
 
     // Add newVocabulary
-    await Models.vocabulary.create({
+    const result = await Models.vocabulary.create({
       userId,
       word,
     });
 
-    return {
-      ok: true,
-      status: 200,
-      message: `Successfully Saved`,
-    };
-  });
+    return result;
+  };
 
-  public delete = asyncHandler(async (req: Request, res: Response) => {
-    const wordId = req.body.id;
-    const user = req.body.user;
-
+  public delete = async (userId: number, wordId: number) => {
     const result = await Models.vocabulary.destroy({
       where: {
         id: wordId,
-        userId: user.id,
+        userId,
       },
     });
 
-    if (result < 1) {
-      throw {
-        ok: false,
-        status: 404,
-        message: `The word couldn't be found.`,
-      };
-    }
-
-    res.send({
-      ok: true,
-      message: `success to delete`,
-    });
-  });
+    return result;
+  };
 }
 
 export default new VocabularyController();

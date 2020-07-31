@@ -4,6 +4,7 @@ import styled from '../../typed-components';
 import Definition from '../Definition';
 import Home from '../Home';
 import Nav from '../Nav';
+import SavedWords from '../../routes/SavedWords'
 
 interface IProps {
   url: string;
@@ -17,6 +18,7 @@ const MainPresenter: React.SFC<IProps> = ({ url }) => {
       </Header>
       <Route exact={true} path={`${url}`} component={Home} />
       <Route path={`${url}dictionary/:searchValue`} component={Definition} />
+      <Route path={'/savedwords'} component={SavedWords} />
     </Container>
   );
 };
