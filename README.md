@@ -23,7 +23,7 @@ This project is **deployed** at: https://hyunse-dictionary-client.herokuapp.com/
 
 ## Todo
 - [x] Save a word in DB
-- [ ] Show word list that a user save
+- [x] Show word list that a user save
 - [ ] Play word games or quizzes for praticing words?
 - [ ] Decorate main page
-- [ ] Error handling when word is not exist.
+- [x] Error handling when word is not exist.
