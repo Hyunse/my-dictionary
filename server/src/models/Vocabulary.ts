@@ -24,7 +24,7 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         field: 'user_id'
       },
-      word: DataTypes.STRING(5000),
+      word: DataTypes.STRING(9999),
       createdAt: {
         type: 'TIMESTAMP',
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
