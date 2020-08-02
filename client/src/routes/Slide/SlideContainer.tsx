@@ -40,7 +40,7 @@ class SlideContainer extends Component<IProps, IState> {
     'https://images.unsplash.com/photo-1457131760772-7017c6180f05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1636&q=80'
   ];
   private textHead = [
-    'We Added New Words to the Dictionary in April 2019',
+    'We Added New Words to the Dictionary',
     'Try the My Dictionary Traveler!',
     'Welcome'
   ];

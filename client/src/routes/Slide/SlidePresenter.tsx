@@ -47,6 +47,7 @@ const SlidePresenter: React.SFC<IProps> = ({ slides, dots, nextSlide, currentSli
 const Container = styled.div`
   position: relative;
   max-width: 450px;
+  max-height: 330px;
   text-align: center;
   margin: auto;
   
