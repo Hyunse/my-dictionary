@@ -46,11 +46,10 @@ const SlidePresenter: React.SFC<IProps> = ({ slides, dots, nextSlide, currentSli
 
 const Container = styled.div`
   position: relative;
-  max-width: 700px;
-  height: 400px;
-  margin: auto;
+  max-width: 450px;
   text-align: center;
-
+  margin: auto;
+  
   .hide {
     display: none;
   }
@@ -89,7 +88,7 @@ const SlideImg = styled.img`
 const Arrow = styled.a`
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 40%;
   width: auto;
   margin-top: -22px;
   padding: 16px;
@@ -104,7 +103,7 @@ const Arrow = styled.a`
 const TextBox = styled.div`
   position: absolute;
   width: 100%;
-  bottom: -20px;
+  bottom: 50px;
   background: rgba(255,255,255,.92);
   opacity: 0.5;
   z-index: 1;

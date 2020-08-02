@@ -4,7 +4,8 @@ import styled from '../../typed-components';
 import Definition from '../Definition';
 import Home from '../Home';
 import Nav from '../Nav';
-import SavedWords from '../../routes/SavedWords'
+import SavedWords from '../../routes/SavedWords';
+import Footer from '../../components/Footer';
 
 interface IProps {
   url: string;
@@ -12,14 +13,17 @@ interface IProps {
 
 const MainPresenter: React.SFC<IProps> = ({ url }) => {
   return (
-    <Container>
-      <Header>
-        <Nav />
-      </Header>
-      <Route exact={true} path={`${url}`} component={Home} />
-      <Route path={`${url}dictionary/:searchValue`} component={Definition} />
-      <Route path={'/savedwords'} component={SavedWords} />
-    </Container>
+    <>
+      <Container>
+        <Header>
+          <Nav />
+        </Header>
+        <Route exact={true} path={`${url}`} component={Home} />
+        <Route path={`${url}dictionary/:searchValue`} component={Definition} />
+        <Route path={'/savedwords'} component={SavedWords} />
+      </Container>
+      <Footer />
+    </>
   );
 };
 
@@ -27,7 +31,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1165px;
-  height: 100vh;
   padding-left: 30px;
   padding-right: 30px;
   margin: auto;
