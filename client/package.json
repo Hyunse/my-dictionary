@@ -40,6 +40,5 @@
     "gh-pages": "^3.0.0",
     "typescript": "^3.9.7"
   },
-  "proxy": "http://localhost:5000",
   "homepage": "https://hyunse.github.io/my-dictionary"
 }

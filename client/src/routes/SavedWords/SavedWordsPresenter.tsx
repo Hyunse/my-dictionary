@@ -7,7 +7,6 @@ interface IProps {
 }
 
 const SavedWordsPresenter: React.SFC<IProps> = ({ saveWords }) => {
-  console.log(saveWords);
   return (
     <Container>
       <Header>Saved Words</Header>

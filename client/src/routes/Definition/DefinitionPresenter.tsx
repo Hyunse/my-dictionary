@@ -35,7 +35,6 @@ const renderSearchList = (searchList, clickSave) => {
 };
 
 const recommandList = (searchList) => {
-  console.log(searchList);
   return (
     <div>
       <NotFound>Can't find the word.</NotFound>

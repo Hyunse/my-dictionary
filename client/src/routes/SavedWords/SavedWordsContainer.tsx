@@ -30,7 +30,7 @@ class SavedWordsContainer extends Component<IProps, IStateProps> {
     }
 
     const response = await axios.get(
-      `http://${server.development.url}/vocabulary`
+      `${server.production.url}/vocabulary`
     );
 
     delete axios.defaults.headers.common['Authorization'];

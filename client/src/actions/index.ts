@@ -73,7 +73,7 @@ export const signIn = (
 ) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `http://${server.development.url}/user/signIn`,
+      `${server.production.url}/user/signIn`,
       {
         email,
         password,
@@ -116,7 +116,7 @@ export const signUp = (
 ) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `http://${server.development.url}/user/signUp`,
+      `${server.production.url}/user/signUp`,
       {
         country,
         email,

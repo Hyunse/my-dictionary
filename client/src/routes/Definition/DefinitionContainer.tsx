@@ -31,15 +31,14 @@ class DefinitionContainer extends Component<IProps> {
       axios.defaults.headers.common['Authorization'] = `Bearer ${ token }`;
     }
     
-    const response = await axios.post(
-      `http://${server.development.url}/vocabulary/save`,
+    await axios.post(
+      `${server.production.url}/vocabulary/save`,
       {
         word,
       },
     );
     delete axios.defaults.headers.common['Authorization'];
 
-    console.log(response.data);
   };
 
   public render() {

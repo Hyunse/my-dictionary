@@ -29,6 +29,7 @@ class UserController {
       };
     }
 
+    // Check Duplicated Password
     const isSame = await PasswordUtil.comparePassword(password, user.password);
 
     if (!isSame) {
