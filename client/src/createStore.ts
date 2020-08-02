@@ -6,7 +6,7 @@ const store: any = createStore(
   // Reducer
   reducers,
   // Init State
-  { auth: { authenticated: localStorage.getItem('token') || '' }},
+  { auth: { authenticated: `${localStorage.getItem('token') ? localStorage.getItem('token') : ''}`}},
   // Middleware
   applyMiddleware(reduxThunk)
 );
