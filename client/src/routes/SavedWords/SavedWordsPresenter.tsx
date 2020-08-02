@@ -4,16 +4,17 @@ import Definition from '../../components/Definition';
 
 interface IProps {
   saveWords: any;
+  clickDelete?: (e: any) => void;
 }
 
-const SavedWordsPresenter: React.SFC<IProps> = ({ saveWords }) => {
+const SavedWordsPresenter: React.SFC<IProps> = ({ saveWords, clickDelete }) => {
   return (
     <Container>
       <Header>Saved Words</Header>
       <SavedWords>
       { saveWords && saveWords.map((item, index) => {
 
-        return <Definition item={JSON.parse(item.word)} key={index} index={index} showSave={false} />      
+        return <Definition item={JSON.parse(item.word)} key={index} index={item.id} showSave={false} clickDelete={clickDelete}/>      
       })}
       </SavedWords>
     </Container>

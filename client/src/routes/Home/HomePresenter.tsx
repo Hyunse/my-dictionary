@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '../../typed-components';
-import Slide from '../Slide';
+// import Slide from '../Slide';
 import gameImg from '../../assets/image/game.jpg';
 import todayWord from './TodayWord';
 
@@ -20,7 +20,7 @@ const HomePresenter: React.SFC<IProps> = ({ clickSearch }) => {
 
   return (
     <Container>
-      <Slide />
+      {/* <Slide /> */}
       <BoxContainer>
         <Box>
           <BoxHeader>take a 3-minute break</BoxHeader>
@@ -70,6 +70,7 @@ const BoxHeader = styled.h4`
   line-height: 1.692em;
   text-align: center;
   text-transform: uppercase;
+  margin-top: 10px;
   margin-bottom: 10px;
 `;
 

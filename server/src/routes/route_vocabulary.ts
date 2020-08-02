@@ -45,7 +45,7 @@ router.delete(
   asyncHandler(async (req: Request, res: Response) => {
     // Param
     const userId = req.body.user.id;
-    const wordId = req.body.wordId;
+    const wordId: any = req.query.wordId;
 
     const result = await vocabularyController.delete(userId, wordId);
 

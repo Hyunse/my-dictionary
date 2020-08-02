@@ -5,6 +5,7 @@ export default {
   },
   production: {
     port: process.env.REACT_APP_API_PORT,
-    url: `https://${process.env.REACT_APP_API_URL}`,
+    // url: `https://${process.env.REACT_APP_API_URL}`,
+    url: 'http://localhost:5000',
   },
 };

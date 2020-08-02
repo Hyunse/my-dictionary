@@ -16,7 +16,6 @@ const jwtHandler = async (
   const token: any = req.headers['authorization'];
   if (token) {
     const user = await JWTUtil.decodeJWT(token);
-
     if (user) {
       req.body.user = user;
     } else {

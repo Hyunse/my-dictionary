@@ -2,26 +2,33 @@ import React from 'react';
 import styled from '../../typed-components';
 
 interface IProps {
-  item: any,
-  index: number,
-  showSave: boolean,
+  item: any;
+  index: number;
+  showSave: boolean;
   clickSave?: (e: any) => void;
+  clickDelete?: (e: any) => void;
 }
 
-const Input: React.SFC<IProps> = ({ item, index, showSave ,clickSave }) => {
-  function save() {
-    return (
-      <SaveBtn value={index} onClick={clickSave}>
-        Save
-      </SaveBtn>
-    )
-  }
-  
+const Input: React.SFC<IProps> = ({
+  item,
+  index,
+  showSave,
+  clickSave,
+  clickDelete,
+}) => {
   return (
     <DefinitionWrapper key={index}>
       <EntryHeader>
         <SearchWord>{item.meta.stems[0]}</SearchWord>
-        {showSave && save()}
+        {showSave ? (
+          <SaveBtn value={index} onClick={clickSave}>
+            Save
+          </SaveBtn>
+        ) : (
+          <SaveBtn value={index} onClick={clickDelete}>
+            Delete
+          </SaveBtn>
+        )}
         <Fl>{item.fl}</Fl>
         <EntryAttr>
           {item.hwi.prs != null ? `/${item.hwi.prs[0].mw}/` : ''}
@@ -145,6 +152,10 @@ const SaveBtn = styled.button`
   border: none;
   color: white;
   cursor: pointer;
+
+  :hover {
+    background-color: #6c8fa3;
+  }
 `;
 
 export default Input;

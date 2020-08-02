@@ -38,7 +38,7 @@ class VocabularyController {
     return result;
   };
 
-  public delete = async (userId: number, wordId: number) => {
+  public delete = async (userId: number, wordId: string) => {
     const result = await Models.vocabulary.destroy({
       where: {
         id: wordId,

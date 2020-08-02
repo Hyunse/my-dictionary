@@ -27,18 +27,21 @@ class DefinitionContainer extends Component<IProps> {
   public clickSave = async (e) => {
     const word = JSON.stringify(this.props.searchList[e.target.value]);
     const token = localStorage.getItem('token');
-    if(token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${ token }`;
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
-    
-    await axios.post(
+
+    const response = await axios.post(
       `${server.production.url}/vocabulary/save`,
       {
         word,
-      },
+      }
     );
     delete axios.defaults.headers.common['Authorization'];
 
+    if (response.data && response.data.ok) {
+      alert('Saved');
+    }
   };
 
   public render() {

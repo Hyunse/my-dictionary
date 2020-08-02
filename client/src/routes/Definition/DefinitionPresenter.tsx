@@ -4,7 +4,7 @@ import Definition from '../../components/Definition';
 
 interface IProps {
   searchList: any;
-  clickSave: (e: any) => void;
+  clickSave?: (e: any) => void;
 }
 const DefinitionPresenter: React.SFC<IProps> = ({ searchList, clickSave }) => {
   return (
