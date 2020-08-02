@@ -1,0 +1,17 @@
+{
+  "name": "my-dictionary",
+  "version": "1.0.0",
+  "description": "My-Dictionary is a web application that users can search the definition of a word using [Merriam-Webster API](https://www.merriam-webster.com/).",
+  "scripts": {
+    "prepare-client": "cd client && npm install && npm run build",
+    "prepare-server": "cd server && npm install",
+    "heroku-postbuild": "npm run prepare-client && npm run prepare-server",
+    "start": "cd server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hyunse/my-dictionary.git"
+  },
+  "author": "Hyunse Kim",
+  "license": "ISC"
+}
