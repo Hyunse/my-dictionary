@@ -2,7 +2,6 @@ import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, SIGN_UP_FAIL, SIGN_UP_SUCCESS } from
 
 const INITIAL_STATE = {
   authenticated: '',
-  errorMessage: ''
 };
 
 export default function(state = INITIAL_STATE, action) {
