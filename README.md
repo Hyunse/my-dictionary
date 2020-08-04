@@ -20,10 +20,7 @@ This project is **deployed** at: https://hyunse-dictionary-client.herokuapp.com/
 ## Feature
 - Sign up & Sign in a user
 - Search a word
+- Save words & Show Saved word lists
 
 ## Todo
-- [x] Save a word in DB
-- [x] Show word list that a user save
 - [ ] Play word games or quizzes for praticing words?
-- [ ] Decorate main page
-- [x] Error handling when word is not exist.
