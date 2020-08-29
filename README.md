@@ -21,6 +21,6 @@ This project is **deployed** at: https://hyunse-dictionary-client.herokuapp.com/
 - Sign up & Sign in a user
 - Search a word
 - Save words & Show Saved word lists
+- Word Game
 
 ## Todo
-- [ ] Play word games or quizzes for praticing words?
