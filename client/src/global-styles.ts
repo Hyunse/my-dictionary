@@ -19,6 +19,18 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @media (max-width: 350px) {
+    html,body {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 300px) {
+    html,body {
+      font-size: 10px;
+    }
+  }
+
   #root {
     width: 100%;
     height: inherit;

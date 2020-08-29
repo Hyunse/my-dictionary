@@ -7,7 +7,9 @@ interface IProps {
 }
 
 const Button: React.SFC<IProps> = ({ name, onClick }) => (
-  <Container onClick={onClick} name={name}>{name}</Container>
+  <Container onClick={onClick} name={name}>
+    {name}
+  </Container>
 );
 
 const Container = styled.button`
@@ -19,7 +21,7 @@ const Container = styled.button`
   border: 0;
   padding: 15px;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 0.875rem;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;

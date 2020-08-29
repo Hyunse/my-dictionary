@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import styled from '../../typed-components';
 import Definition from '../Definition';
+import Game from '../Game';
 import Home from '../Home';
 import Nav from '../Nav';
 import SavedWords from '../../routes/SavedWords';
@@ -21,6 +22,7 @@ const MainPresenter: React.SFC<IProps> = ({ url }) => {
         <Route exact={true} path={`${url}`} component={Home} />
         <Route path={`${url}dictionary/:searchValue`} component={Definition} />
         <Route path={'/savedwords'} component={SavedWords} />
+        <Route path={'/game'} component={Game} />
       </Container>
       <Footer />
     </>

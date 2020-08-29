@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from '../../typed-components';
 // import Slide from '../Slide';
 import gameImg from '../../assets/image/game.jpg';
@@ -25,7 +26,9 @@ const HomePresenter: React.SFC<IProps> = ({ clickSearch }) => {
         <Box>
           <BoxHeader>take a 3-minute break</BoxHeader>
           <BoxUnderLine />
-          <GameImg src={gameImg} />
+          <Link to="/game">
+            <GameImg src={gameImg} />
+          </Link>
         </Box>
         <Box>
           <Border>
@@ -48,6 +51,7 @@ const Container = styled.div`
   margin-top: 150px;
   padding-right: 15px;
   padding-left: 15px;
+  margin-bottom: 50px;
 
   @media (max-width: 750px) {
     margin-top: 0;
@@ -59,7 +63,7 @@ const BoxContainer = styled.div`
   justify-content: space-around;
   margin-top: 50px;
 
-  @media (max-width: 750px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
     margin-top: 87px;
@@ -71,7 +75,7 @@ const Box = styled.div`
   max-width: 400px;
 
   @media (max-width: 750px) {
-    width:100%;
+    width: 100%;
   }
 `;
 
@@ -98,9 +102,13 @@ const BoxUnderLine = styled.div`
 `;
 
 const GameImg = styled.img`
-  max-width: 100%;
+  max-width: 400px;
   margin-top: 15px;
   cursor: pointer;
+
+  @media (max-width: 750px) {
+    max-width: 100%;
+  }
 `;
 
 const Today = styled.div`

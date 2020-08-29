@@ -62,6 +62,7 @@ const NavItems = (logined: boolean, clickLogout: () => void) => {
         Logout
       </a>
       |<Link to="/savedwords">Saved Words</Link>
+      |<Link to="/game">Game</Link>
     </NavItem>
   );
 };
@@ -175,6 +176,7 @@ const NavList = styled.ul`
 const NavItem = styled.li`
   display: inline;
   position: relative;
+  font-size: 1rem;
 
   > a {
     color: #e4e4e4;

@@ -135,6 +135,7 @@ const VgContent = styled.div`
 
     > span {
       font-weight: bold;
+      margin-right: 10px;
     }
   }
 `;
