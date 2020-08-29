@@ -81,7 +81,14 @@ class GameContainer extends Component<IProps, IState> {
   }
 
   public nextWord = () => {
+    const input = this.wordInputRef;
+    
+    if(input && input.current) {
+      input.current.value = '';
+    }
+    
     this.getRandomeWord();
+    this.setState({ correct: true });
   }
 
   public showAnswer = () => {
