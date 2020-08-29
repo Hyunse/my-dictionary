@@ -16,6 +16,10 @@ const Container = styled.div`
   height: 100px;
   background-color: #0000;
   color: #0000;
+
+  @media (max-width: 750px) {
+    display: none;
+  }
 `;
 
 export default Footer;

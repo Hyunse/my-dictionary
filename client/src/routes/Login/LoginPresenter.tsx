@@ -59,6 +59,15 @@ const Container = styled.div`
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
+
+  @media (max-width: 750px) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+  }
 `;
 
 const Form = styled.div`
@@ -70,6 +79,15 @@ const Form = styled.div`
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  @media (max-width: 750px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 `;
 
 const Message = styled.p`

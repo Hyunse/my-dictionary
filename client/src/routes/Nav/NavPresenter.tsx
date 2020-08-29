@@ -68,25 +68,37 @@ const NavItems = (logined: boolean, clickLogout: () => void) => {
 
 const Container = styled.div`
   width: 100%;
-  height: 50px;
+  height: 100%;
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
   box-sizing: border-box;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-bottom: 10px;
+  gap: 20px;
 
   > svg {
-    flex: 0 0 120px;
-    height: 50%;
+    width: 80px;
     fill: #f5f6fa;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+      padding: 0 5px;
+      z-index: 0;
+    }
   }
 
-  @media (min-width: 768px) {
-    max-width: 1160px;
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
     margin: 0 auto;
-    height: 110px;
-    padding: 0 20px;
+
+    > svg {
+      flex-basis: 50px !important;
+    }
   }
 `;
 
@@ -98,6 +110,10 @@ const SearchContainer = styled.div`
   position: static;
   flex-wrap: wrap;
   align-self: flex-start;
+
+  @media (max-width: 768px) {
+    align-self: flex-start;
+  }
 `;
 
 const Search = styled.div`

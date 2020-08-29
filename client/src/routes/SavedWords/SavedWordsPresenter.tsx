@@ -12,10 +12,18 @@ const SavedWordsPresenter: React.SFC<IProps> = ({ saveWords, clickDelete }) => {
     <Container>
       <Header>Saved Words</Header>
       <SavedWords>
-      { saveWords && saveWords.map((item, index) => {
-
-        return <Definition item={JSON.parse(item.word)} key={index} index={item.id} showSave={false} clickDelete={clickDelete}/>      
-      })}
+        {saveWords &&
+          saveWords.map((item, index) => {
+            return (
+              <Definition
+                item={JSON.parse(item.word)}
+                key={index}
+                index={item.id}
+                showSave={false}
+                clickDelete={clickDelete}
+              />
+            );
+          })}
       </SavedWords>
     </Container>
   );
@@ -28,12 +36,16 @@ const Container = styled.div`
   padding-top: 30px;
   padding-right: 15px;
   padding-left: 15px;
+
+  @media (max-width: 750px) {
+    margin-top: 82px;
+  }
 `;
 
 const Header = styled.header`
   color: #303336;
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
+  font-size: 3rem;
   font-stretch: normal;
   font-style: normal;
   font-weight: bold;
@@ -49,4 +61,8 @@ const Header = styled.header`
 const SavedWords = styled.div`
   display: block;
   margin-top: 50px;
+
+  @media (max-width: 750px) {
+    margin-top: 30px;
+  }
 `;

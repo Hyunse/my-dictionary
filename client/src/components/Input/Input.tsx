@@ -21,7 +21,11 @@ const InputBox = styled.input`
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 0.875rem;
+
+  @media (max-width: 750px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export default Input;

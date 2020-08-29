@@ -45,20 +45,34 @@ const HomePresenter: React.SFC<IProps> = ({ clickSearch }) => {
 };
 
 const Container = styled.div`
-  margin-top: 110px;
-  padding-top: 30px;
+  margin-top: 150px;
   padding-right: 15px;
   padding-left: 15px;
+
+  @media (max-width: 750px) {
+    margin-top: 0;
+  }
 `;
 
 const BoxContainer = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 50px;
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 87px;
+    gap: 50px;
+  }
 `;
 
 const Box = styled.div`
-  width: 33.33%;
+  max-width: 400px;
+
+  @media (max-width: 750px) {
+    width:100%;
+  }
 `;
 
 const BoxHeader = styled.h4`
@@ -120,10 +134,14 @@ const Word = styled.h4`
 `;
 
 const Border = styled.div`
-  width: 100%;
+  width: 400px;
   height: 100%;
   border: 2px solid #bcd4e2;
   border-radius: 2px;
+
+  @media (max-width: 750px) {
+    width: 100%;
+  }
 `;
 
 export default HomePresenter;

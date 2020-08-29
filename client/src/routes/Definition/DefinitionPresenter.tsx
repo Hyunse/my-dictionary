@@ -58,7 +58,7 @@ const Container = styled.div`
 const NotFound = styled.div`
   color: #265667;
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  font-size: 50px;
+  font-size: 2rem;
   font-stretch: normal;
   font-style: normal;
   font-weight: bold;

@@ -11,9 +11,9 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, errorMessage: action.payload };
     case SIGN_UP_SUCCESS:
     case LOGIN_SUCCESS:
-      return { ...state, authenticated: action.payload };
+      return { ...state, errorMessage: null, authenticated: action.payload };
     case LOGOUT:
-      return { ...state, authenticated: '' };
+      return { ...state, errorMessage: null, authenticated: '' };
     default:
       return { ...state, errorMessage: action.payload };
   }

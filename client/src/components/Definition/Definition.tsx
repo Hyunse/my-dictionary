@@ -62,7 +62,7 @@ const SearchWord = styled.h1`
   color: #303336;
   display: inline;
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
+  font-size: 3rem;
   font-stretch: normal;
   font-style: normal;
   font-weight: bold;
@@ -82,7 +82,7 @@ const Fl = styled.div`
   color: #4a7d95;
   display: inline;
   font-family: 'Playfair Display', serif;
-  font-size: 26px;
+  font-size: 1.625rem;
   font-stretch: normal;
   font-style: normal;
   font-weight: bold;
@@ -92,8 +92,8 @@ const Fl = styled.div`
 `;
 
 const EntryAttr = styled.div`
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
   color: #225f73;
 `;
 
@@ -106,11 +106,11 @@ const VgHeader = styled.div`
   > h2 {
     color: #265667;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    font-size: 22px;
+    font-size: 1.375rem;
     font-stretch: normal;
     font-style: normal;
     font-weight: bold;
-    line-height: 26px;
+    line-height: 1.625rem;
     letter-spacing: 0.3px;
     margin-bottom: 0.5em;
     padding-bottom: 0;
@@ -126,11 +126,11 @@ const VgContent = styled.div`
     flex-direction: row;
     color: #303336;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-stretch: normal;
     font-weight: normal;
     letter-spacing: 0.2px;
-    line-height: 22px;
+    line-height: 1.375rem;
     margin-bottom: 25px;
 
     > span {
@@ -155,6 +155,10 @@ const SaveBtn = styled.button`
 
   :hover {
     background-color: #6c8fa3;
+  }
+
+  @media (max-width: 750px) {
+    width: auto;
   }
 `;
 

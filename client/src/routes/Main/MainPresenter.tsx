@@ -28,12 +28,13 @@ const MainPresenter: React.SFC<IProps> = ({ url }) => {
 };
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 1165px;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin: auto;
+  margin-left: 200px;
+  margin-right: 200px;
+
+  @media (max-width: 750px) {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 `;
 
 const Header = styled.div`
@@ -49,6 +50,10 @@ const Header = styled.div`
   -o-transition: left 0.3s ease-in-out;
   -webkit-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
+
+  @media (max-width: 750px) {
+    position: absolute;
+  }
 `;
 
 export default MainPresenter;

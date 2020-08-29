@@ -78,11 +78,21 @@ const Container = styled.div`
   flex-direction: column;
   padding-top: 100px;
   padding-bottom: 100px;
+
+  @media (max-width: 750px) {
+    padding: 0;
+    height: 100%;
+  }
 `;
 
 const Wrapper = styled.div`
   max-width: 680px;
   margin: 0 auto;
+
+  @media (max-width: 750px) {
+    max-width: 100%;
+    height: 100%;
+  }
 `;
 
 const Card = styled.div`
@@ -91,11 +101,19 @@ const Card = styled.div`
   background: #ffffff;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  @media (max-width: 750px) {
+    height: 100%;
+  }
 `;
 
 const Header = styled.div`
   background: url(${book}) center center/cover no-repeat;
   padding-top: 210px;
+
+  @media (max-width: 750px) {
+    display: none;
+  }
 `;
 
 const Body = styled.div`
@@ -106,6 +124,17 @@ const Body = styled.div`
   button[name='Cancel'] {
     margin-top: 10px;
     background: #c8d6e5;
+  }
+
+  @media (max-width: 750px) {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 15px;
+    padding-left: 45px;
+    padding-bottom: 0px;
+    padding-right: 45px;
   }
 `;
 
