@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import styled from '../../typed-components';
 // import Slide from '../Slide';
 import gameImg from '../../assets/image/game.jpg';
-import todayWord from './TodayWord';
 
 interface IProps {
+  todayWord: string;
   clickSearch: (e) => void;
 }
 
-const HomePresenter: React.SFC<IProps> = ({ clickSearch }) => {
+const HomePresenter: React.SFC<IProps> = ({ clickSearch, todayWord }) => {
   function getToday() {
     const date = new Date();
     const day = date.getDate();
@@ -24,7 +24,7 @@ const HomePresenter: React.SFC<IProps> = ({ clickSearch }) => {
       {/* <Slide /> */}
       <BoxContainer>
         <Box>
-          <BoxHeader>take a 3-minute break</BoxHeader>
+          <BoxHeader>let's play a game</BoxHeader>
           <BoxUnderLine />
           <Link to="/game">
             <GameImg src={gameImg} />
@@ -32,12 +32,12 @@ const HomePresenter: React.SFC<IProps> = ({ clickSearch }) => {
         </Box>
         <Box>
           <Border>
-            <BoxHeader>word of the day</BoxHeader>
+            <BoxHeader>random word</BoxHeader>
             <BoxUnderLine />
             {getToday()}
             <WordDiv>
-              <Word data-value={todayWord.meta.id} onClick={clickSearch}>
-                {todayWord.meta.id}
+              <Word data-value={todayWord} onClick={clickSearch}>
+                {todayWord}
               </Word>
             </WordDiv>
           </Border>

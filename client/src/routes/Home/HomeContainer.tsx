@@ -4,6 +4,11 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { RouteComponentProps } from 'react-router';
+import words from '../../Words';
+
+interface IState {
+  todayWord: string;
+}
 
 interface IOwnProps {}
 
@@ -15,21 +20,39 @@ interface IDispatchProps {
 
 type IProps = IStateProps & IDispatchProps & IOwnProps & RouteComponentProps;
 
-class HomeContainer extends Component<IProps, {}> {
+class HomeContainer extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
+
+    this.state = {
+      todayWord: '',
+    };
+
+    this.getRandomeWord();
   }
 
   public clickSearch = (e) => {
     const value = e.target.getAttribute('data-value');
-    
+
     this.props.searchWords(value, () => {
       this.props.history.push(`/dictionary/${value}`);
     });
   };
 
+  public getRandomeWord() {
+    const word = words[Math.floor(Math.random() * words.length)];
+
+    if (word) {
+      this.props.searchWords(word, () => {
+        this.setState({
+          todayWord: word.toUpperCase(),
+        });
+      });
+    }
+  }
+
   public render() {
-    return <HomePresenter clickSearch={this.clickSearch} />;
+    return <HomePresenter clickSearch={this.clickSearch} todayWord={this.state.todayWord} />;
   }
 }
 
